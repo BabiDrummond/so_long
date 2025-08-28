@@ -9,7 +9,8 @@ MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lpthread
 
 OBJ = $(SRC:.c=.o)
-SRC = map_validator.c
+SRC = srcs/map_loader.c	\
+	srcs/map_validator.c
 
 all: $(NAME)
 
@@ -30,5 +31,7 @@ fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 
-re:
-	fclean all
+re: fclean all
+
+run: all
+	./$(NAME)
