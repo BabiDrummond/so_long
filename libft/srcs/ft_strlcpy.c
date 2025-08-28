@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/12 22:24:57 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:11:26 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	size_t	src_len;
+
+	src_len = ft_strlen(src);
+	if (size == 0)
+		return (src_len);
+	while (size-- > 1 && *src)
+		*dst++ = *src++;
+	*dst = '\0';
+	return (src_len);
 }

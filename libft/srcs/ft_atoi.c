@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/13 05:31:35 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:07:57 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+int	ft_atoi(const char *nptr)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	int	num;
+	int	negative;
+
+	num = 0;
+	negative = 1;
+	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+		if (*nptr++ == '-')
+			negative *= -1;
+	while (ft_isdigit(*nptr))
+		num = (num * 10) + *nptr++ - 48;
+	return (num * negative);
 }

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/14 17:11:29 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:11:11 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	char	*new_str;
+	char	*temp;
+
+	new_str = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	temp = new_str;
+	if (!new_str)
+		return (NULL);
+	while (*s1)
+		*new_str++ = *s1++;
+	while (*s2)
+		*new_str++ = *s2++;
+	return (temp);
 }

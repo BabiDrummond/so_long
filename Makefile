@@ -1,25 +1,34 @@
-NAME = solong.a
+NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
-SRC = map_validator.c
+CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
+
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+MLX_DIR = minilibx
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lpthread
+
 OBJ = $(SRC:.c=.o)
-MINILIBX = minilibx-linux
-MFLAGS = 
-LIB_SRC = libft
+SRC = map_validator.c
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(OBJ) $(INCLUDES) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
 clean:
 	rm -f $(OBJ)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re:
 	fclean all

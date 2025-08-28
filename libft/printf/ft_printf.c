@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/21 21:02:58 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:18:36 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/ft_printf.h"
 
-int main(void)
+int	ft_printf(const char *s, ...)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	va_list	args;
+	int		count;
+
+	va_start(args, s);
+	count = 0;
+	while (*s)
+	{
+		if (*s == '%' && check_case("cspdiuxX", *++s))
+			count += put_case(*s++, args);
+		else
+			count += ft_putchr(*s++);
+	}
+	va_end(args);
+	return (count);
 }

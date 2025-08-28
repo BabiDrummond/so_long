@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/13 06:30:14 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:08:03 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	char	*arr;
+
+	if (size && nmemb > (size_t) -1 / size)
+		return (NULL);
+	arr = malloc(nmemb * size);
+	if (!arr)
+		return (NULL);
+	ft_bzero(arr, nmemb * size);
+	return (arr);
 }

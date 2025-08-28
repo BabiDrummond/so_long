@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/16 19:52:18 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:11:37 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	int		i;
+	char	*result;
+
+	i = -1;
+	result = ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!result)
+		return (NULL);
+	while (s[++i])
+		result[i] = (*f)((unsigned int)i, (char)s[i]);
+	return (result);
 }

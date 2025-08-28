@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/14 16:13:20 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:14:17 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	char	*substr;
+	size_t	i;
+
+	i = 0;
+	if (start > ft_strlen(s))
+		return (NULL);
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	substr = malloc(len + 1);
+	if (!substr)
+		return (NULL);
+	while (i < len)
+		substr[i++] = s[start++];
+	substr[i] = '\0';
+	return (substr);
 }

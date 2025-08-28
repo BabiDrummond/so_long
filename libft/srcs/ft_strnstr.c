@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 21:11:43 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/13 04:48:09 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/27 19:13:38 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/headers/libft.h"
+#include "../headers/libft.h"
 
-int main(void)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 100, 100, "oi");
-    (void) win;
-    ft_putstr_fd("oi", 1);
-    mlx_loop(mlx);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (!*little)
+		return ((char *)(big));
+	while (len-- && big[i])
+	{
+		j = 0;
+		while (big[i + j] == little[j] && j <= len)
+		{
+			if (!little[j + 1])
+				return ((char *)(&big[i]));
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }
