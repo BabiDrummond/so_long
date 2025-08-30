@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 18:38:55 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/27 19:16:14 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/08/29 20:17:24 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,3 +112,17 @@ char	*get_next_line(int fd)
 	buffer[fd] = read_line(buffer[fd], &line);
 	return (line);
 }
+
+// int main(void)
+// {
+// 	#include <stdio.h>
+// 	#include <fcntl.h>
+// 	# include <stdlib.h>
+// 	# include <unistd.h>
+// 	int fd = open("map01.ber", O_RDONLY);
+// 	printf("main: %s", get_next_line(fd));
+// 	printf("main: %s", get_next_line(fd));
+// 	printf("main: %s", get_next_line(fd));
+// 	printf("main: %s", get_next_line(fd));
+// 	close(fd);
+// }

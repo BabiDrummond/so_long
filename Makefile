@@ -15,7 +15,7 @@ SRC = srcs/map_loader.c	\
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(INCLUDES) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -33,5 +33,5 @@ fclean: clean
 
 re: fclean all
 
-run: all
+run: re
 	./$(NAME)
