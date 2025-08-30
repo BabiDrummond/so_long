@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/29 20:59:39 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/08/30 18:47:58 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@
 // 		lst_lines = lst_lines->next;
 // 	}
 // }
+
+int check_chars(char *str)
+{
+    int     i;
+    char    *set;
+    
+    i = 0;
+    set = "01CEP";
+    while (*str)
+    {
+        while (*set)
+        {
+            if (*str != *set)
+                return (0);
+            set++;
+        }
+        str++;
+    }
+    return (1);
+}
 
 void	read_file(char *file_name)
 {
