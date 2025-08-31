@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 22:37:37 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/21 21:02:58 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/30 21:49:10 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/ft_printf.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "minilibx/mlx.h"
-# include "libft/include/libft.h"
+int	ft_printf(const char *s, ...)
+{
+	va_list	args;
+	int		count;
 
-void	read_file(char *file_name);
-
-#endif
+	va_start(args, s);
+	count = 0;
+	while (*s)
+	{
+		if (*s == '%' && check_case("cspdiuxX", *++s))
+			count += put_case(*s++, args);
+		else
+			count += ft_putchr(*s++);
+	}
+	va_end(args);
+	return (count);
+}

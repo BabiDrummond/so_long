@@ -9,8 +9,8 @@ MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lpthread
 
 OBJ = $(SRC:.c=.o)
-SRC = srcs/map_loader.c	\
-	srcs/map_validator.c
+SRC = src/map_loader.c	\
+	src/map_validator.c
 
 all: $(NAME)
 

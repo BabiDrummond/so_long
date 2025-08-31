@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 22:37:37 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/13 03:48:24 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/30 21:50:59 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "minilibx/mlx.h"
-# include "libft/include/libft.h"
-
-void	read_file(char *file_name);
-
-#endif
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	while (n--)
+		if (*(unsigned char *)s++ == (unsigned char)c)
+			return ((void *)--s);
+	return (NULL);
+}

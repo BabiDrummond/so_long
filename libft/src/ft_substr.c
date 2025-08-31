@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 22:37:37 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/14 16:13:20 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/30 21:53:48 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "minilibx/mlx.h"
-# include "libft/include/libft.h"
+char	*ft_substr(const char *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	i;
 
-void	read_file(char *file_name);
-
-#endif
+	i = 0;
+	if (start > ft_strlen(s))
+		return (NULL);
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	substr = malloc(len + 1);
+	if (!substr)
+		return (NULL);
+	while (i < len)
+		substr[i++] = s[start++];
+	substr[i] = '\0';
+	return (substr);
+}

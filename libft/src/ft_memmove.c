@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 22:37:37 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/13 01:48:38 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/30 21:51:55 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "minilibx/mlx.h"
-# include "libft/include/libft.h"
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char	*temp;
 
-void	read_file(char *file_name);
-
-#endif
+	temp = (char *)dest;
+	if (!dest && !src)
+		return (NULL);
+	if (dest <= src)
+		while (n--)
+			*(char *)dest++ = *(char *)src++;
+	else if (dest > src)
+	{
+		src += n - 1;
+		dest += n - 1;
+		while (n--)
+			*(char *)dest-- = *(char *)src--;
+	}
+	return (temp);
+}

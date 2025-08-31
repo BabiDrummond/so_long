@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 22:37:37 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/07/13 06:30:14 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/08/30 21:49:39 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "minilibx/mlx.h"
-# include "libft/include/libft.h"
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	char	*arr;
 
-void	read_file(char *file_name);
-
-#endif
+	if (size && nmemb > (size_t) -1 / size)
+		return (NULL);
+	arr = malloc(nmemb * size);
+	if (!arr)
+		return (NULL);
+	ft_bzero(arr, nmemb * size);
+	return (arr);
+}
