@@ -6,11 +6,11 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 18:47:58 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/08/30 23:29:08 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
 
 // void	read_file(char *file_name)
 // {

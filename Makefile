@@ -1,30 +1,35 @@
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
+INCLUDES = -I./include/ -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lpthread
 
-OBJ = $(SRC:.c=.o)
-SRC = src/map_loader.c	\
-	src/map_validator.c
+SRCS_DIR = src/
+SRCS = map_loader.c	\
+	map_validator.c
+OBJS_DIR = objs/
+OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(OBJS) $(LIBFT) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
 
-%.o: %.c
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJS_DIR)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
