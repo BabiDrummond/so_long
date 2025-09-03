@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/08/30 23:29:08 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:14:44 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,46 @@
 // 	}
 // }
 
-int check_chars(char *str)
+int validate_chars(char *str, const char *set)
 {
-    int     i;
-    char    *set;
-    
-    i = 0;
-    set = "01CEP";
-    while (*str)
-    {
-        while (*set)
-        {
-            if (*str != *set)
-                return (0);
-            set++;
-        }
-        str++;
-    }
-    return (1);
+	int	i;
+	int	j;
+	int	valid;
+	
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		valid = 1;
+		while (set[j])
+		{
+			if (str[i] == set[j])
+				valid = 0;
+			j++;
+		}
+		i++;
+	}
+	return (valid);
+}
+
+char	*trim(char *str, char set)
+{
+	char	*new;
+	int		i;
+
+	if (!str || !*str)
+		return (ft_strdup(""));
+	i = 0;
+	new = ft_calloc(ft_strlen(str), sizeof(char));
+	if (!new)
+		return (NULL);
+	while (str[i] && str[i] != set)
+	{
+		new[i] = str[i];
+		i++;
+	}
+	free(str);
+	return (new);
 }
 
 void	read_file(char *file_name)
@@ -63,6 +85,8 @@ void	read_file(char *file_name)
 	line = get_next_line(fd);
 	while (line)
 	{
+		line = trim(line, '\n');
+		ft_printf("Valid? %d\n", validate_chars(line, "01CEP"));
 		map = ft_strjoin(map, line);
 		line = get_next_line(fd);
 	}
