@@ -40,3 +40,5 @@ re: fclean all
 
 run: re
 	./$(NAME)
+
+.PHONY: $(LIBFT) clean fclean re
