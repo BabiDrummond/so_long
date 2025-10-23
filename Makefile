@@ -6,7 +6,7 @@ INCLUDES = -I./include/ -I$(LIBFT_DIR) -I$(MLX_DIR)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = minilibx
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lpthread
+MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lpthread
 
 SRCS_DIR = src/
 SRCS = map_loader.c	\
@@ -17,28 +17,37 @@ OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
+	@echo -n "\033[0;32mGenerated so_long\n"
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "\033[95mCompiling $(notdir $<)"
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
-
-$(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
+	@make --no-print-directory -C $(LIBFT_DIR)
 
 clean:
-	rm -rf $(OBJS_DIR)
-	make -C $(LIBFT_DIR) clean
+	@echo "\033[0;34mCleaning so_long objects"
+	@rm -rf $(OBJS_DIR)
+	@make --no-print-directory -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@echo "\033[0;34mCleaning so_long"
+	@rm -f $(NAME)
+	@make --no-print-directory -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
 run: re
 	./$(NAME)
 
+gdb: CFLAGS += -g -O0
+gdb: re
+	@gdb ./$(NAME)
+
+valgrind: re
+	valgrind ./$(NAME)
+	
 .PHONY: $(LIBFT) clean fclean re

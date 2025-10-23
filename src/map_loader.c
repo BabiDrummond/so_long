@@ -6,31 +6,11 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/18 20:41:15 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:31:55 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-char	*trim(char *str, char set)
-{
-	char	*new;
-	int		i;
-
-	if (!str || !*str)
-		return (ft_strdup(""));
-	i = 0;
-	new = ft_calloc(ft_strlen(str), sizeof(char));
-	if (!new)
-		return (NULL);
-	while (str[i] && str[i] != set)
-	{
-		new[i] = str[i];
-		i++;
-	}
-	free(str);
-	return (new);
-}
 
 int validate_line(char *str, const char *set)
 {
@@ -53,73 +33,47 @@ int validate_line(char *str, const char *set)
   return (valid);
 }
 
-// int check_char(char *set, char c)
-// {
-//   while(*set)
-//   {
-//     if (*set++ == c)
-//       return (1);
-//   }
-//   return (0);
-// }
-
-// int validate_line(char *str, const char *set)
-// {
-//   int valid;
-  
-//   valid = 0;
-//   while (*str)
-//   {
-//     if (check_char(set, *str++))
-//       valid = 1;
-//     else
-//       return (0);
-//   }
-//   return (valid);
-// }
-
-void	read_file(char *file_name)
+char	*read_file(char *file_name)
 {
-	char	*map;
+	char	*buffer;
 	char	*line;
 	int		fd;
 
-	map = ft_strdup("");
+	buffer = ft_strdup("");
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
-		line = trim(line, '\n');
-		ft_printf("line: %s\n", line);
-		ft_printf("Valid? %d\n", validate_line(line, "01CEP"));
-		map = ft_strjoin(map, line);
+		buffer = ft_strjoin_free(buffer, line);
+		if (!buffer)
+			return (NULL);
 		line = get_next_line(fd);
 	}
-	ft_printf("%s", map);
+	return (buffer);
 }
 
-// void	read_file(char *file_name)
-// {
-// 	t_list	*lst_lines;
-// 	char	*line;
-// 	int		fd;
+void	parse(t_map *map, char *buffer)
+{
+	char **split;
+	int	i;
+	int j;
 
-// 	fd = open(file_name, O_RDONLY);
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		line = trim(line, '\n');
-// 		ft_lstadd_back(&lst_lines, ft_lstnew(line));
-// 		line = get_next_line(fd);
-// 	}
-// 	while (lst_lines)
-// 	{
-// 		ft_printf("%s", lst_lines->content);
-// 		lst_lines = lst_lines->next;
-// 	}
-// }
+	i = 0;
+	j = 0;
+	split = ft_split(buffer, '\n');
+	while (split[i])
+		ft_printf("Valid? %d\n", validate_line(split[i++], "01CEP"));
+	while(j < i)
+		ft_printf("%s", split[j++]);
+	(void) map;
+}
 
 int main(void)
 {
-	read_file("maps/map01.ber");
+	t_map map;
+	char *buffer;
+	
+	buffer = read_file("maps/map01.ber");
+	ft_printf("%s", buffer);
+	parse(&map, buffer);
 }
