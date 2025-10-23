@@ -6,13 +6,13 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/22 21:31:55 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:35:41 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int validate_line(char *str, const char *set)
+int check_chars(char *str, const char *set)
 {
   int i;
   int j;
@@ -62,10 +62,10 @@ void	parse(t_map *map, char *buffer)
 	j = 0;
 	split = ft_split(buffer, '\n');
 	while (split[i])
-		ft_printf("Valid? %d\n", validate_line(split[i++], "01CEP"));
+		ft_printf("Valid? %d\n", check_chars(split[i++], "01CEP"));
+	map->map = split;
 	while(j < i)
-		ft_printf("%s", split[j++]);
-	(void) map;
+		ft_printf("%s\n", map->map[j++]);
 }
 
 int main(void)
@@ -74,6 +74,6 @@ int main(void)
 	char *buffer;
 	
 	buffer = read_file("maps/map01.ber");
-	ft_printf("%s", buffer);
+	ft_printf("%s\n", buffer);
 	parse(&map, buffer);
 }
