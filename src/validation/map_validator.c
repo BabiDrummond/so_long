@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 20:23:16 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:36:38 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,33 @@ void	check_map_size(t_map *map)
 		error_handler(map->map, "Map too small.", EXIT_FAILURE);
 }
 
+void	check_valid_map(t_map *map)
+{
+	int	i;
+	int	c;
+	int	e;
+	int p;
+
+	i = 0;
+	c = 0;
+	e = 0;
+	p = 0;
+	while(map->map[i])
+	{
+		if (ft_strchr(map->map[i], 'C'))
+			c++;
+		if (ft_strchr(map->map[i], 'E'))
+			e++;
+		if (ft_strchr(map->map[i], 'P'))
+			p++;
+		i++;
+	}
+	if (c < 1 || p != 1 || e != 1)
+		error_handler(map->map, "Invalid elements in map.", EXIT_FAILURE);
+}
+
 void	validate_map(t_map *map)
 {
 	check_chars(map, "01CEP");
 	check_map_size(map);
 }
-
-// int main(void)
-// {
-//     void *mlx = mlx_init();
-//     void *win = mlx_new_window(mlx, 100, 100, "oi");
-//     (void) win;
-//     ft_putstr_fd("oi", 1);
-//     mlx_loop(mlx);
-// }

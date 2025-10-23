@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 20:26:37 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:36:28 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(void)
 	char	*buffer;
 	char	*filename;
 
-	filename = "maps/toosmall.ber";
+	filename = "maps/invalidmap.ber";
 	validate_name(filename, ".ber");
 	read_file(&buffer, filename);
 	ft_printf("%s\n", buffer);
