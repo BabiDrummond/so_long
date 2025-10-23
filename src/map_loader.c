@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 19:41:28 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:26:37 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	main(void)
 	char	*buffer;
 	char	*filename;
 
-	filename = "maps/map01.ber";
+	filename = "maps/toosmall.ber";
 	validate_name(filename, ".ber");
 	read_file(&buffer, filename);
-	//ft_printf("%s\n", buffer);
+	ft_printf("%s\n", buffer);
 	parser(&map, buffer);
 	validate_map(&map);
 	map_print(map.map);

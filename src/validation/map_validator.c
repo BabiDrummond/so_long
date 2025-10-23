@@ -6,41 +6,54 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 19:36:49 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:23:16 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_chars(char *str, const char *set)
+void	check_chars(t_map *map, const char *set)
 {
 	int	i;
 	int	j;
+	int	k;
 	int	valid;
 
 	i = -1;
-	valid = 0;
-	while (str[++i])
+	while (map->map[++i])
 	{
 		j = -1;
-		valid = 0;
-		while (set[++j])
-			if (str[i] == set[j] && ++valid)
-				break ;
-		if (!valid)
-			return (valid);
+		while (map->map[i][++j])
+		{
+			k = -1;
+			valid = 0;
+			while (set[++k])
+				if (map->map[i][j] == set[k] && ++valid)
+					break ;
+			if (!valid)
+				error_handler(map->map, "Invalid chars in map.", EXIT_FAILURE);
+		}
 	}
-	return (valid);
+}
+
+void	check_map_size(t_map *map)
+{
+	size_t	i;
+	size_t	size;
+
+	i = 0;
+	size = ft_strlen(map->map[i]);
+	while (map->map[i])
+		if (ft_strlen(map->map[i++]) != size)
+			error_handler(map->map, "Irregular map.", EXIT_FAILURE);
+	if (i < 4 || size < 4)
+		error_handler(map->map, "Map too small.", EXIT_FAILURE);
 }
 
 void	validate_map(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	while (map->map[i])
-		if (!check_chars(map->map[i++], "01CEP"))
-			error_handler(map->map, "Invalid chars in map.", EXIT_FAILURE);
+	check_chars(map, "01CEP");
+	check_map_size(map);
 }
 
 // int main(void)
