@@ -9,9 +9,10 @@ MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lpthread
 
 SRCS_DIR = src/
-SRCS = error_handler.c	\
-	map_loader.c		\
-	map_validator.c
+SRCS = validation/file_validator.c \
+	validation/map_validator.c \
+	error_handler.c	\
+	map_loader.c
 OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 

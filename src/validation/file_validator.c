@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   file_validator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 16:15:50 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 18:46:13 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/23 19:37:06 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/10/23 19:37:54 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_handler(char **args, const char *error_msg, int exit_code)
+void	validate_name(char *filename, char *extension)
 {
-	if (args)
-		ft_split_free(args);
-	if (exit_code == EXIT_FAILURE)
-		ft_printf("%s\n", error_msg);
-	exit (exit_code);
+	int	f_len;
+	int	e_len;
+
+	f_len = ft_strlen(filename);
+	e_len = ft_strlen(extension);
+	if (f_len < 5 || !ft_strnstr(filename + (f_len - e_len), extension, e_len))
+		error_handler(NULL,
+			"Invalid file. Please provide a .ber file.", EXIT_FAILURE);
 }
