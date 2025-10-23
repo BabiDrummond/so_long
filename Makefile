@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I./include/ -I$(LIBFT_DIR) -I$(MLX_DIR)
+INCLUDE = -I./include/
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -9,7 +9,8 @@ MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lpthread
 
 SRCS_DIR = src/
-SRCS = map_loader.c	\
+SRCS = error_handler.c	\
+	map_loader.c		\
 	map_validator.c
 OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
@@ -17,7 +18,7 @@ OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) $(OBJS) $(LIBFT) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	@echo -n "\033[0;32mGenerated so_long\n"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c

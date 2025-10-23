@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/22 21:23:03 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:27:22 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "../minilibx/mlx.h"
 # include "../libft/include/libft.h"
 
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+
 typedef struct s_map
 {
 	char	**map;
@@ -29,6 +32,7 @@ typedef struct s_map
 	int		floor;
 }	t_map;
 
-char	*read_file(char *file_name);
+void	read_file(char **buffer, char *file_name);
+void	error_handler(char **args, const char *error_msg, int exit_code);
 
 #endif
