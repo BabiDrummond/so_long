@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 20:10:01 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:34:15 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,31 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 
-typedef struct s_map
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
+typedef struct s_game
 {
 	char	**map;
-	int		player;
 	int		collectible;
-	int		enemy;
-	int		walls;
+	int		exit;
+	int		player;
+	int		wall;
 	int		floor;
-}	t_map;
+	t_pos	init;
+	t_pos	end;
+	t_pos	size;
+}	t_game;
 
 void	read_file(char **buffer, char *file_name);
 void	error_handler(char **args, const char *error_msg, int exit_code);
 
 // Validation
-void	check_chars(t_map *map, const char *set);
-void	validate_map(t_map *map);
+void	check_chars(char **map, const char *set);
+void	validate_map(t_game *game);
 void	validate_name(char *filename, char *extension);
 
 #endif

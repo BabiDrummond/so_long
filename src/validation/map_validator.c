@@ -6,77 +6,76 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 20:36:38 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/24 22:15:19 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_chars(t_map *map, const char *set)
+void	check_chars(char **map, const char *set)
 {
 	int	i;
 	int	j;
-	int	k;
-	int	valid;
 
 	i = -1;
-	while (map->map[++i])
+	while (map[++i])
 	{
 		j = -1;
-		while (map->map[i][++j])
-		{
-			k = -1;
-			valid = 0;
-			while (set[++k])
-				if (map->map[i][j] == set[k] && ++valid)
-					break ;
-			if (!valid)
-				error_handler(map->map, "Invalid chars in map.", EXIT_FAILURE);
-		}
+		while (map[i][++j])
+			if (!ft_strchr(set, map[i][j]))
+				error_handler(map, "Invalid chars in map.", EXIT_FAILURE);
 	}
 }
 
-void	check_map_size(t_map *map)
+void	check_map_size(t_game *g)
 {
-	size_t	i;
-	size_t	size;
+	size_t	row;
+	size_t	col;
 
-	i = 0;
-	size = ft_strlen(map->map[i]);
-	while (map->map[i])
-		if (ft_strlen(map->map[i++]) != size)
-			error_handler(map->map, "Irregular map.", EXIT_FAILURE);
-	if (i < 4 || size < 4)
-		error_handler(map->map, "Map too small.", EXIT_FAILURE);
+	row = 0;
+	col = ft_strlen(g->map[row]);
+	while (g->map[row])
+		if (ft_strlen(g->map[row++]) != col)
+			error_handler(g->map, "Irregular map.", EXIT_FAILURE);
+	if (row < 4 || col < 4)
+		error_handler(g->map, "Map too small.", EXIT_FAILURE);
+	g->size.x = col;
+	g->size.y = row;
 }
 
-void	check_valid_map(t_map *map)
+void	check_valid_elements(t_game *g)
 {
 	int	i;
-	int	c;
-	int	e;
-	int p;
+	int j;
 
-	i = 0;
-	c = 0;
-	e = 0;
-	p = 0;
-	while(map->map[i])
+	i = -1;
+	while (++i < g->size.y)
 	{
-		if (ft_strchr(map->map[i], 'C'))
-			c++;
-		if (ft_strchr(map->map[i], 'E'))
-			e++;
-		if (ft_strchr(map->map[i], 'P'))
-			p++;
-		i++;
+		j = -1;
+		while (++j < g->size.x)
+		{
+			if (g->map[i][j] == 'C')
+				g->collectible++;
+			else if (g->map[i][j] == 'E' && g->exit++)
+			{
+				g->end.x = j;
+				g->end.y = i;
+			}
+			else if (g->map[i][j] == 'P' && g->player++)
+			{
+				g->init.x = j;
+				g->init.y = i;
+			}
+		}
 	}
-	if (c < 1 || p != 1 || e != 1)
-		error_handler(map->map, "Invalid elements in map.", EXIT_FAILURE);
+	ft_printf("c: %d, e: %d, p: %d", g->collectible, g->exit, g->player);
+	if (g->collectible < 1 || g->player != 1 || g->exit != 1)
+		error_handler(g->map, "Invalid elements in map.", EXIT_FAILURE);
 }
 
-void	validate_map(t_map *map)
+void	validate_map(t_game *game)
 {
-	check_chars(map, "01CEP");
-	check_map_size(map);
+	check_chars(game->map, "01CEP");
+	check_map_size(game);
+	check_valid_elements(game);
 }
