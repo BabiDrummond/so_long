@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/28 19:53:00 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:00:53 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	check_map_size(t_game *g)
 void	check_valid_elements(t_game *g)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = -1;
 	while (++i < g->size.y)
@@ -84,9 +84,9 @@ void	check_walls(t_game *g)
 		while (g->map[i][++j])
 		{
 			if ((i == 0 || i == g->size.y - 1) && g->map[i][j] != '1')
-				error_handler(g->map, "Map not surrounded by walls.", EXIT_FAILURE);
+				error_handler(g->map, "Map missing walls.", EXIT_FAILURE);
 			else if ((j == 0 || j == g->size.x - 1) && g->map[i][j] != '1')
-				error_handler(g->map, "Map not surrounded by walls.", EXIT_FAILURE);
+				error_handler(g->map, "Map missing walls.", EXIT_FAILURE);
 		}
 	}
 }
