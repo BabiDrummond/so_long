@@ -6,24 +6,24 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/24 22:15:19 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/28 19:53:00 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_chars(char **map, const char *set)
+void	check_chars(t_game *g, const char *set)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (map[++i])
+	while (g->map[++i])
 	{
 		j = -1;
-		while (map[i][++j])
-			if (!ft_strchr(set, map[i][j]))
-				error_handler(map, "Invalid chars in map.", EXIT_FAILURE);
+		while (g->map[i][++j])
+			if (!ft_strchr(set, g->map[i][j]))
+				error_handler(g->map, "Invalid chars in map.", EXIT_FAILURE);
 	}
 }
 
@@ -68,14 +68,33 @@ void	check_valid_elements(t_game *g)
 			}
 		}
 	}
-	ft_printf("c: %d, e: %d, p: %d", g->collectible, g->exit, g->player);
 	if (g->collectible < 1 || g->player != 1 || g->exit != 1)
 		error_handler(g->map, "Invalid elements in map.", EXIT_FAILURE);
 }
 
+void	check_walls(t_game *g)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (g->map[++i])
+	{
+		j = -1;
+		while (g->map[i][++j])
+		{
+			if ((i == 0 || i == g->size.y - 1) && g->map[i][j] != '1')
+				error_handler(g->map, "Map not surrounded by walls.", EXIT_FAILURE);
+			else if ((j == 0 || j == g->size.x - 1) && g->map[i][j] != '1')
+				error_handler(g->map, "Map not surrounded by walls.", EXIT_FAILURE);
+		}
+	}
+}
+
 void	validate_map(t_game *game)
 {
-	check_chars(game->map, "01CEP");
+	check_chars(game, "01CEP");
 	check_map_size(game);
 	check_valid_elements(game);
+	check_walls(game);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/24 21:34:15 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:54:12 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	read_file(char **buffer, char *file_name);
 void	error_handler(char **args, const char *error_msg, int exit_code);
 
 // Validation
-void	check_chars(char **map, const char *set);
 void	validate_map(t_game *game);
 void	validate_name(char *filename, char *extension);
 
