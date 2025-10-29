@@ -6,13 +6,13 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:37:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 19:37:54 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:52:41 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	validate_name(char *filename, char *extension)
+void	validate_filename(char *filename, char *extension)
 {
 	int	f_len;
 	int	e_len;
