@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/28 18:54:12 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/28 21:14:20 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
+
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_pos
 {

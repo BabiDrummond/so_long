@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/28 20:00:53 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/28 22:08:59 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	check_valid_elements(t_game *g)
 		{
 			if (g->map[i][j] == 'C')
 				g->collectible++;
-			else if (g->map[i][j] == 'E' && g->exit++)
+			else if (g->map[i][j] == 'E' && ++g->exit)
 			{
 				g->end.x = j;
 				g->end.y = i;
 			}
-			else if (g->map[i][j] == 'P' && g->player++)
+			else if (g->map[i][j] == 'P' && ++g->player)
 			{
 				g->init.x = j;
 				g->init.y = i;
@@ -91,10 +91,29 @@ void	check_walls(t_game *g)
 	}
 }
 
+int	check_valid_path(t_game *g, int row, int col)
+{
+	if (g->map[row][col] == 'E' && !g->collectible)
+		return (TRUE);
+	if (g->map[row][col] == 'C')
+		g->collectible--;
+	if (g->map[row][col] == '1')
+		return (FALSE);
+	g->map[row][col] = '1';
+	if (check_valid_path(g, row - 1, col)
+		|| check_valid_path(g, row, col + 1)
+		|| check_valid_path(g, row + 1, col)
+		|| check_valid_path(g, row, col - 1))
+		return (TRUE);
+	return (FALSE);
+}
+
 void	validate_map(t_game *game)
 {
 	check_chars(game, "01CEP");
 	check_map_size(game);
 	check_valid_elements(game);
 	check_walls(game);
+	if (check_valid_path(game, game->init.y, game->init.x) == FALSE)
+		ft_printf("errouuuu o caminho\n");
 }

@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/28 19:53:36 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/28 21:32:01 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(void)
 	char	*buffer;
 	char	*filename;
 
-	filename = "maps/invalidwalls.ber";
+	filename = "maps/invalidpath.ber";
 	validate_name(filename, ".ber");
 	read_file(&buffer, filename);
 	ft_printf("%s\n", buffer);
