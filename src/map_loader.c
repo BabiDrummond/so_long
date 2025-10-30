@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 21:44:28 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/30 18:40:14 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	read_file(char **buffer, char *file_name)
 	}
 }
 
-void	parser(t_game *game, char *buffer)
+void	parser(t_map *map, char *buffer)
 {
 	char	**split;
 	int		i;
@@ -43,40 +43,38 @@ void	parser(t_game *game, char *buffer)
 	free(buffer);
 	if (!split)
 		error_handler(NULL, "Error spliting buffer.", EXIT_FAILURE);
-	game->map = split;
+	map->grid = split;
 }
 
-void	init_map(t_game *game)
+void	init_map(t_map *map)
 {
-	game->collectible = 0;
-	game->exit = 0;
-	game->player = 0;
-	game->wall = 0;
-	game->floor = 0;
-	game->init.x = 0;
-	game->init.y = 0;
-	game->end.x = 0;
-	game->end.y = 0;
-	game->size.x = 0;
-	game->size.y = 0;
+	map->collectibles = 0;
+	map->players = 0;
+	map->exits = 0;
+	map->init.x = 0;
+	map->init.y = 0;
+	map->end.x = 0;
+	map->end.y = 0;
+	map->size.x = 0;
+	map->size.y = 0;
 }
 
 // int	main(void)
 // {
-// 	t_game	game;
+// 	t_map	map;
 // 	char	*buffer;
 // 	char	*filename;
 
-// 	filename = "maps/invalidsize.ber";
+// 	filename = "maps/map02.ber";
 // 	validate_filename(filename, ".ber");
 // 	read_file(&buffer, filename);
 // 	ft_printf("%s\n", buffer);
-// 	parser(&game, buffer);
-// 	init_map(&game);
-// 	map_validator(&game);
-// 	ft_printf("x: %d, y: %d\n", game.size.x, game.size.y);
-// 	ft_matrix_print(game.map);
-// 	ft_split_free(game.map);
+// 	parser(&map, buffer);
+// 	init_map(&map);
+// 	map_validator(&map);
+// 	ft_printf("x: %d, y: %d\n", map.size.x, map.size.y);
+// 	ft_matrix_print(map.grid);
+// 	ft_split_free(map.grid);
 // }
 
 int main(void)

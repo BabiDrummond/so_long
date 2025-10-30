@@ -50,7 +50,6 @@ fclean: clean
 	@echo "\033[0;34mCleaning so_long"
 	@rm -f $(NAME)
 	@make --no-print-directory -C $(LIBFT_DIR) fclean
-	@make --no-print-directory -C $(MLX_DIR) clean
 
 re: fclean all
 
