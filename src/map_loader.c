@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 21:26:55 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/29 21:44:28 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,29 @@ void	init_map(t_game *game)
 	game->size.y = 0;
 }
 
-int	main(void)
-{
-	t_game	game;
-	char	*buffer;
-	char	*filename;
+// int	main(void)
+// {
+// 	t_game	game;
+// 	char	*buffer;
+// 	char	*filename;
 
-	filename = "maps/invalidsize.ber";
-	validate_filename(filename, ".ber");
-	read_file(&buffer, filename);
-	ft_printf("%s\n", buffer);
-	parser(&game, buffer);
-	init_map(&game);
-	map_validator(&game);
-	ft_printf("x: %d, y: %d\n", game.size.x, game.size.y);
-	ft_matrix_print(game.map);
-	ft_split_free(game.map);
+// 	filename = "maps/invalidsize.ber";
+// 	validate_filename(filename, ".ber");
+// 	read_file(&buffer, filename);
+// 	ft_printf("%s\n", buffer);
+// 	parser(&game, buffer);
+// 	init_map(&game);
+// 	map_validator(&game);
+// 	ft_printf("x: %d, y: %d\n", game.size.x, game.size.y);
+// 	ft_matrix_print(game.map);
+// 	ft_split_free(game.map);
+// }
+
+int main(void)
+{
+    void *mlx = mlx_init();
+    void *win = mlx_new_window(mlx, 100, 100, "oi");
+    (void) win;
+    ft_putstr_fd("oi", 1);
+    mlx_loop(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 21:22:50 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/29 21:49:01 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../minilibx/mlx.h"
+# include "../mlx/mlx.h"
 # include "../libft/include/libft.h"
 
 # define EXIT_SUCCESS 0

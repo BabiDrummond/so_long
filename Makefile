@@ -1,12 +1,14 @@
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDE = -I./include/
+INCLUDE = -Iinclude/
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
-MLX_DIR = minilibx
-MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lpthread
+
+MLX_DIR = mlx
+MLX = $(MLX_DIR)/libmlx_Linux.a
+MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
 SRCS = validation/map_validator.c 	\
@@ -23,8 +25,8 @@ OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	@$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@$(CC) $(OBJS) $(LIBFT) $(MLX) $(MLX_DEPENCENCIES) -o $(NAME)
 	@echo -n "\033[0;32mGenerated so_long\n"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
@@ -35,15 +37,20 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_DIR)
 
+$(MLX):
+	@make --no-print-directory -C $(MLX_DIR)
+
 clean:
 	@echo "\033[0;34mCleaning so_long objects"
 	@rm -rf $(OBJS_DIR)
 	@make --no-print-directory -C $(LIBFT_DIR) clean
+	@make --no-print-directory -C $(MLX_DIR) clean
 
 fclean: clean
 	@echo "\033[0;34mCleaning so_long"
 	@rm -f $(NAME)
 	@make --no-print-directory -C $(LIBFT_DIR) fclean
+	@make --no-print-directory -C $(MLX_DIR) clean
 
 re: fclean all
 
