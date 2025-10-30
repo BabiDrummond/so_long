@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   validate_chars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 21:22:02 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/29 21:17:13 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/10/29 21:17:35 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_validator(t_game *game)
+void	validate_chars(t_game *g, const char *set)
 {
-	validate_chars(game, "01CEP");
-	validate_size(game);
-	validate_elements(game);
-	validate_walls(game);
-	validate_path(game);
+	int	i;
+	int	j;
+
+	i = -1;
+	while (g->map[++i])
+	{
+		j = -1;
+		while (g->map[i][++j])
+			if (!ft_strchr(set, g->map[i][j]))
+				error_handler(g->map, "Invalid chars in map.", EXIT_FAILURE);
+	}
 }

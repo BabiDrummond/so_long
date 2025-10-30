@@ -9,9 +9,13 @@ MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lpthread
 
 SRCS_DIR = src/
-SRCS = validation/file_validator.c 	\
-	validation/flood_fill.c 		\
-	validation/map_validator.c 		\
+SRCS = validation/map_validator.c 	\
+	validation/validate_chars.c 	\
+	validation/validate_elements.c 	\
+	validation/validate_filename.c 	\
+	validation/validate_path.c 		\
+	validation/validate_size.c 		\
+	validation/validate_walls.c 	\
 	error_handler.c					\
 	map_loader.c
 OBJS_DIR = objs/

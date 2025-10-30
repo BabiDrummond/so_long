@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 21:22:02 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/29 21:20:30 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/10/29 21:20:43 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_validator(t_game *game)
+void	validate_walls(t_game *g)
 {
-	validate_chars(game, "01CEP");
-	validate_size(game);
-	validate_elements(game);
-	validate_walls(game);
-	validate_path(game);
+	int	i;
+	int	j;
+
+	i = -1;
+	while (g->map[++i])
+	{
+		j = -1;
+		while (g->map[i][++j])
+		{
+			if ((i == 0 || i == g->size.y - 1) && g->map[i][j] != '1')
+				error_handler(g->map, "Map missing walls.", EXIT_FAILURE);
+			else if ((j == 0 || j == g->size.x - 1) && g->map[i][j] != '1')
+				error_handler(g->map, "Map missing walls.", EXIT_FAILURE);
+		}
+	}
 }

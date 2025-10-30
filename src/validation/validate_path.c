@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   validate_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:53:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 20:02:54 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/29 21:22:35 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,39 +30,7 @@ int	flood_fill(char **map, int row, int col, int *collectibles)
 	return (FALSE);
 }
 
-int	ft_matrix_len(char **matrix)
-{
-	int	len;
-
-	len = 0;
-	while (matrix[len])
-		len++;
-	return (len);
-}
-
-char	**ft_matrix_dup(char **src)
-{
-	char	**new;
-	int		row;
-	int		col;
-
-	row = -1;
-	new = ft_calloc(ft_matrix_len(src) + 1, sizeof(char *));
-	if (!new)
-		return (NULL);
-	while (src[++row])
-	{
-		col = -1;
-		new[row] = ft_calloc(ft_strlen(src[row]) + 1, sizeof(char));
-		if (!new[row])
-			return (NULL);
-		while (src[row][++col])
-			new[row][col] = src[row][col];
-	}
-	return (new);
-}
-
-void	check_valid_path(t_game *g)
+void	validate_path(t_game *g)
 {
 	char	**map_dup;
 	int		collectibles;

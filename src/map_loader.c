@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/29 20:03:09 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/29 21:26:55 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@ void	parser(t_game *game, char *buffer)
 	game->map = split;
 }
 
-void	map_print(char **matrix)
-{
-	while (*matrix)
-		ft_printf("%s\n", *matrix++);
-}
-
 void	init_map(t_game *game)
 {
 	game->collectible = 0;
@@ -73,14 +67,14 @@ int	main(void)
 	char	*buffer;
 	char	*filename;
 
-	filename = "maps/map01.ber";
+	filename = "maps/invalidsize.ber";
 	validate_filename(filename, ".ber");
 	read_file(&buffer, filename);
 	ft_printf("%s\n", buffer);
 	parser(&game, buffer);
 	init_map(&game);
-	validate_map(&game);
+	map_validator(&game);
 	ft_printf("x: %d, y: %d\n", game.size.x, game.size.y);
-	map_print(game.map);
+	ft_matrix_print(game.map);
 	ft_split_free(game.map);
 }
