@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/31 20:41:52 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/31 20:49:45 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ typedef struct s_mlx
 	int		line_lenght;
 	int		endian;
 }	t_mlx;
+
+typedef struct s_game
+{
+	t_map	map;
+	t_mlx	data;	
+}	t_game;
 
 // Parsing
 void	init_map(t_map *map);
