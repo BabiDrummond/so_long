@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/30 21:21:13 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:32:31 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 // 	ft_matrix_print(map.grid);
 // 	ft_split_free(map.grid);
 // }
+
+int	create_rgb(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
 
 void	close_window(t_mlx *m_data)
 {
