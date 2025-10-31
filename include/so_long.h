@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/30 20:50:14 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/31 20:41:52 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define TRUE 1
 # define FALSE 0
 
+# define WIDTH 720
+# define HEIGHT 440
+
 # define ESC 65307
 
 typedef struct s_pos
@@ -39,9 +42,10 @@ typedef struct s_map
 	int		collectibles;
 	int		players;
 	int		exits;
+	int		height;
+	int		width;
 	t_pos	init;
 	t_pos	end;
-	t_pos	size;
 }	t_map;
 
 typedef struct s_mlx
