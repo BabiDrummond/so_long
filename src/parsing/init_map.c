@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_screen.c                                      :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 20:29:03 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 20:29:04 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/30 19:41:49 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/10/30 19:41:58 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// int main(void)
-// {
-//     void *mlx = mlx_init();
-//     void *win = mlx_new_window(mlx, 100, 100, "oi");
-//     (void) win;
-//     ft_putstr_fd("oi", 1);
-//     mlx_loop(mlx);
-// }
+#include "so_long.h"
+
+void	init_map(t_map *map)
+{
+	map->collectibles = 0;
+	map->players = 0;
+	map->exits = 0;
+	map->init.x = 0;
+	map->init.y = 0;
+	map->end.x = 0;
+	map->end.y = 0;
+	map->size.x = 0;
+	map->size.y = 0;
+}

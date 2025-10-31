@@ -11,15 +11,19 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
-SRCS = validation/map_validator.c 	\
+SRCS = parsing/init_map.c 			\
+	parsing/map_loader.c 			\
+	parsing/parser.c				\
+	parsing/read_file.c				\
+	validation/error_handler.c		\
+	validation/map_validator.c 		\
 	validation/validate_chars.c 	\
 	validation/validate_elements.c 	\
 	validation/validate_filename.c 	\
 	validation/validate_path.c 		\
 	validation/validate_size.c 		\
 	validation/validate_walls.c 	\
-	error_handler.c					\
-	map_loader.c
+	main.c
 OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 
