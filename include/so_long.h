@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 19:43:54 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:03:39 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 # define TRUE 1
 # define FALSE 0
 
-# define WIDTH 720
-# define HEIGHT 440
+# define SQUARE 32
 
 # define ESC 65307
 
@@ -57,6 +56,8 @@ typedef struct s_mlx
 	int		bpp;
 	int		line_size;
 	int		endian;
+	int		height;
+	int		width;
 }	t_mlx;
 
 typedef struct s_game

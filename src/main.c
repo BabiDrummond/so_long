@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 19:41:00 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:24:48 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,46 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	render(t_mlx *mlx)
+void	draw_rect(t_mlx *mlx, int col, int row, int color)
 {
-	(void) mlx;
-	return (0);
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < SQUARE)
+	{
+		x = -1;
+		while (++x < SQUARE)
+			ft_put_pixel(mlx, col * SQUARE + x, row * SQUARE + y, color);
+	}
 }
 
-void	draw_rect()
+int	render(t_map *map, t_mlx *mlx)
 {
-	
+	int	col;
+	int row;
+
+	row = -1;
+	while (++row < map->height)
+	{
+		col = -1;
+		while (++col < map->width)
+		{
+			if (map->grid[row][col] == '0')
+				draw_rect(mlx, col, row, create_rgb(70, 200, 200));
+			if (map->grid[row][col] == '1')
+				draw_rect(mlx, col, row, create_rgb(122, 122, 122));
+			if (map->grid[row][col] == 'C')
+				draw_rect(mlx, col, row, create_rgb(255, 150, 0));
+			if (map->grid[row][col] == 'E')
+				draw_rect(mlx, col, row, create_rgb(0, 190, 0));
+			if (map->grid[row][col] == 'M')
+				draw_rect(mlx, col, row, create_rgb(255, 0, 100));
+			if (map->grid[row][col] == 'P')
+				draw_rect(mlx, col, row, create_rgb(255, 128, 255));
+		}
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -67,13 +98,16 @@ int	main(int argc, char **argv)
 	ft_matrix_print(game.map.grid);
 
 	ft_putstr_fd("oi", 1);
+	game.mlx.width = game.map.width * SQUARE;
+	game.mlx.height = game.map.height * SQUARE;
 	game.mlx.mlx_ptr = mlx_init();
-	game.mlx.win = mlx_new_window(game.mlx.mlx_ptr, WIDTH, HEIGHT, "Hello World");
-	game.mlx.img = mlx_new_image(game.mlx.mlx_ptr, WIDTH, HEIGHT);
+	game.mlx.win = mlx_new_window(game.mlx.mlx_ptr, game.mlx.width, 
+								game.mlx.height, "Hello World");
+	game.mlx.img = mlx_new_image(game.mlx.mlx_ptr, game.mlx.width, game.mlx.height);
 	game.mlx.addr = mlx_get_data_addr(game.mlx.img, &game.mlx.bpp, 
 										&game.mlx.line_size, &game.mlx.endian);
 	
-	ft_put_pixel(&game.mlx, WIDTH / 2, HEIGHT / 2, 0x00FF0000);
+	render(&game.map, &game.mlx);
 	mlx_put_image_to_window(game.mlx.mlx_ptr, game.mlx.win, game.mlx.img, 0, 0);
 	
 	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game.mlx);
