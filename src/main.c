@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 20:24:48 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:34:24 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	draw_rect(t_mlx *mlx, int col, int row, int color)
 int	render(t_map *map, t_mlx *mlx)
 {
 	int	col;
-	int row;
+	int	row;
 
 	row = -1;
 	while (++row < map->height)
@@ -89,28 +89,25 @@ int	render(t_map *map, t_mlx *mlx)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	
+
 	if (argc != 2)
 		error_handler(NULL, "Usage: ./so_long <map_file.ber>", EXIT_FAILURE);
 	map_loader(&game.map, argv[1]);
 	map_validator(&game.map);
 	ft_printf("x: %d, y: %d\n", game.map.width, game.map.height);
 	ft_matrix_print(game.map.grid);
-
-	ft_putstr_fd("oi", 1);
 	game.mlx.width = game.map.width * SQUARE;
 	game.mlx.height = game.map.height * SQUARE;
 	game.mlx.mlx_ptr = mlx_init();
-	game.mlx.win = mlx_new_window(game.mlx.mlx_ptr, game.mlx.width, 
-								game.mlx.height, "Hello World");
-	game.mlx.img = mlx_new_image(game.mlx.mlx_ptr, game.mlx.width, game.mlx.height);
-	game.mlx.addr = mlx_get_data_addr(game.mlx.img, &game.mlx.bpp, 
-										&game.mlx.line_size, &game.mlx.endian);
-	
+	game.mlx.win = mlx_new_window(game.mlx.mlx_ptr, game.mlx.width,
+			game.mlx.height, "Hello World");
+	game.mlx.img = mlx_new_image(game.mlx.mlx_ptr, game.mlx.width,
+			game.mlx.height);
+	game.mlx.addr = mlx_get_data_addr(game.mlx.img, &game.mlx.bpp,
+			&game.mlx.line_size, &game.mlx.endian);
 	render(&game.map, &game.mlx);
 	mlx_put_image_to_window(game.mlx.mlx_ptr, game.mlx.win, game.mlx.img, 0, 0);
-	
 	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game.mlx);
-	mlx_hook(game.mlx.win, 2, 1L<<0, &keypress, &game);
+	mlx_hook(game.mlx.win, 2, 1L << 0, &keypress, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }
