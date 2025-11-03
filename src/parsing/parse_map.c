@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 19:41:49 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 18:59:38 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/30 19:35:24 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/11/03 19:43:31 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_init(t_map *map)
+void	parse_map(t_map *map, char *buffer)
 {
-	map->collectibles = 0;
-	map->players = 0;
-	map->exits = 0;
-	map->init.x = 0;
-	map->init.y = 0;
-	map->end.x = 0;
-	map->end.y = 0;
-	map->height = 0;
-	map->width = 0;
+	char	**split;
+	int		i;
+
+	i = 0;
+	if (!buffer)
+		error_handler(NULL, "Empty map.", EXIT_FAILURE);
+	split = ft_split(buffer, '\n');
+	free(buffer);
+	if (!split)
+		error_handler(NULL, "Error spliting buffer.", EXIT_FAILURE);
+	map->grid = split;
 }

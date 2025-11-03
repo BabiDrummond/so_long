@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 18:59:16 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:43:54 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,25 @@ typedef struct s_map
 
 typedef struct s_mlx
 {
-	void	*mlx;
+	void	*mlx_ptr;
 	void	*win;
 	void	*img;
 	void	*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
+	int		bpp;
+	int		line_size;
 	int		endian;
 }	t_mlx;
 
 typedef struct s_game
 {
 	t_map	map;
-	t_mlx	data;	
+	t_mlx	mlx;
 }	t_game;
 
 // Parsing
-void	map_init(t_map *map);
+void	init_map(t_map *map);
 void	map_loader(t_map *map, char *filename);
-void	map_parser(t_map *map, char *buffer);
+void	parse_map(t_map *map, char *buffer);
 void	read_file(char **buffer, char *file_name);
 
 // Validation

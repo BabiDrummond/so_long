@@ -11,9 +11,9 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
-SRCS = parsing/map_init.c 			\
+SRCS = parsing/init_map.c 			\
 	parsing/map_loader.c 			\
-	parsing/map_parser.c			\
+	parsing/parse_map.c				\
 	parsing/read_file.c				\
 	validation/error_handler.c		\
 	validation/map_validator.c 		\
