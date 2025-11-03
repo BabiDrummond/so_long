@@ -6,24 +6,11 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/31 20:47:27 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:13:26 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	main(void)
-{
-	t_map	map;
-	char	*filename;
-
-	filename = "maps/map02.ber";
-	map_loader(&map, filename);
-	map_validator(&map);
-	ft_printf("x: %d, y: %d\n", map.width, map.height);
-	ft_matrix_print(map.grid);
-	ft_split_free(map.grid);
-}
 
 int	create_rgb(int r, int g, int b)
 {
@@ -61,21 +48,29 @@ int	render(t_mlx *data)
 	(void) data;
 	return (0);
 }
+int	main(int argc, char **argv)
+{
+	t_game	game;
+	
+	if (argc <= 1)
+		error_handler(NULL, "Command: ./so_long FILE_PATH\n", EXIT_FAILURE);
+	map_loader(&game.map, argv[1]);
+	map_validator(&game.map);
+	ft_printf("x: %d, y: %d\n", game.map.width, game.map.height);
+	ft_matrix_print(game.map.grid);
+	//ft_split_free(game.map.grid);
 
-// int	main(void)
-// {
-// 	t_mlx	data;
+	ft_putstr_fd("oi", 1);
+	game.data.mlx = mlx_init();
+	game.data.win = mlx_new_window(game.data.mlx, WIDTH, HEIGHT, "Hello World");
+	game.data.img = mlx_new_image(game.data.mlx, WIDTH, HEIGHT);
+	game.data.addr = mlx_get_data_addr(game.data.img, &game.data.bits_per_pixel, 
+										&game.data.line_lenght, &game.data.endian);
 	
-// 	ft_putstr_fd("oi", 1);
-// 	data.mlx = mlx_init();
-// 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Hello World");
-// 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-// 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_lenght, &data.endian);
+	ft_put_pixel(&game.data, WIDTH / 2, HEIGHT / 2, 0x00FF0000);
+	mlx_put_image_to_window(game.data.mlx, game.data.win, game.data.img, 0, 0);
 	
-// 	ft_put_pixel(&data, WIDTH / 2, HEIGHT / 2, 0x00FF0000);
-// 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	
-// 	mlx_loop_hook(data.mlx, &render, &data);
-// 	mlx_hook(data.win, 2, 1L<<0, &keypress, &data);
-// 	mlx_loop(data.mlx);
-// }
+	mlx_loop_hook(game.data.mlx, &render, &game.data);
+	mlx_hook(game.data.win, 2, 1L<<0, &keypress, &game.data);
+	mlx_loop(game.data.mlx);
+}

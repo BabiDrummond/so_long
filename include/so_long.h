@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/31 20:49:45 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:59:16 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ typedef struct s_game
 }	t_game;
 
 // Parsing
-void	init_map(t_map *map);
+void	map_init(t_map *map);
 void	map_loader(t_map *map, char *filename);
-void	parser(t_map *map, char *buffer);
+void	map_parser(t_map *map, char *buffer);
 void	read_file(char **buffer, char *file_name);
 
 // Validation

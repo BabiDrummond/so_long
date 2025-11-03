@@ -11,9 +11,9 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
-SRCS = parsing/init_map.c 			\
+SRCS = parsing/map_init.c 			\
 	parsing/map_loader.c 			\
-	parsing/parser.c				\
+	parsing/map_parser.c			\
 	parsing/read_file.c				\
 	validation/error_handler.c		\
 	validation/map_validator.c 		\
@@ -58,13 +58,13 @@ fclean: clean
 re: fclean all
 
 run: re
-	./$(NAME)
+	./$(NAME) maps/map03.ber
 
 gdb: CFLAGS += -g -O0
 gdb: re
-	@gdb ./$(NAME)
+	@gdb ./$(NAME) maps/map03.ber
 
 valgrind: re
-	valgrind ./$(NAME)
+	valgrind ./$(NAME) maps/map03.ber
 	
 .PHONY: $(LIBFT) clean fclean re
