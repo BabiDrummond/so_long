@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 21:16:50 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:36:22 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,22 @@ void	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
+void	move_player()
+{
+	
+}
+
 int	keypress(int key, t_game *game)
 {
 	if (key == ESC)
 		close_window(game);
+	if (key == W)
+		ft_printf("Key pressed: %c\n", key);
 	if (key == A)
+		ft_printf("Key pressed: %c\n", key);
+	if (key == S)
+		ft_printf("Key pressed: %c\n", key);
+	if (key == D)
 		ft_printf("Key pressed: %c\n", key);
 	return (FALSE);
 }
