@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 16:15:50 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/23 18:46:13 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/30 19:41:49 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/11/04 20:33:14 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_handler(char **args, const char *error_msg, int exit_code)
+void	map_init(t_map *map)
 {
-	if (args)
-		ft_split_free(args);
-	if (exit_code == EXIT_FAILURE)
-		ft_printf("%s\n", error_msg);
-	exit (exit_code);
+	map->collectibles = 0;
+	map->players = 0;
+	map->exits = 0;
+	map->player.x = 0;
+	map->player.y = 0;
+	map->exit.x = 0;
+	map->exit.y = 0;
+	map->rows = 0;
+	map->cols = 0;
 }

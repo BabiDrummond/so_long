@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   map_load.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 19:41:49 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 19:40:17 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/30 19:36:33 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/11/04 20:36:41 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_map *map)
+void	map_load(t_map *map, char *filename)
 {
-	map->collectibles = 0;
-	map->players = 0;
-	map->exits = 0;
-	map->player.x = 0;
-	map->player.y = 0;
-	map->exit.x = 0;
-	map->exit.y = 0;
-	map->rows = 0;
-	map->cols = 0;
+	char	*buffer;
+
+	validate_filename(filename, ".ber");
+	map_read(&buffer, filename);
+	map_parse(map, buffer);
+	map_init(map);
+	validate_chars(map, "01CEMP");
+	validate_size(map);
+	validate_elements(map);
+	validate_walls(map);
+	validate_path(map);
 }

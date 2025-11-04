@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 19:38:35 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:37:28 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,20 @@ typedef struct s_game
 }	t_game;
 
 // Parsing
-void	init_map(t_map *map);
-void	map_loader(t_map *map, char *filename);
-void	parse_map(t_map *map, char *buffer);
-void	read_file(char **buffer, char *file_name);
+void	map_init(t_map *map);
+void	map_load(t_map *map, char *filename);
+void	map_parse(t_map *map, char *buffer);
+void	map_read(char **buffer, char *file_name);
 
 // Validation
-void	error_handler(char **args, const char *error_msg, int exit_code);
-void	map_validator(t_map *map);
 void	validate_chars(t_map *map, const char *set);
 void	validate_elements(t_map *map);
 void	validate_filename(char *filename, char *extension);
 void 	validate_path(t_map *map);
 void	validate_size(t_map *map);
 void	validate_walls(t_map *map);
+
+// Utils
+void	map_error_handler(char **args, const char *error_msg, int exit_code);
 
 #endif

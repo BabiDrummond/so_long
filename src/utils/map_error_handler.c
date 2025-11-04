@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   map_error_handler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 01:14:06 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 20:21:21 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/10/23 16:15:50 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/11/04 20:45:07 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_validator(t_map *map)
+void	error_handler(char **args, const char *error_msg, int exit_code)
 {
-	validate_chars(map, "01CEMP");
-	validate_size(map);
-	validate_elements(map);
-	validate_walls(map);
-	validate_path(map);
+	if (args)
+		ft_matrix_free(args);
+	if (exit_code == EXIT_FAILURE)
+		ft_printf("%s\n", error_msg);
+	exit (exit_code);
 }

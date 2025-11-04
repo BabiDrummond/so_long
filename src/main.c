@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 19:46:49 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:45:07 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	create_rgb(int r, int g, int b)
 
 void	close_window(t_game *game)
 {
-	ft_split_free(game->map.grid);
+	ft_matrix_free(game->map.grid);
 	mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win);
 	mlx_destroy_image(game->mlx.mlx_ptr, game->mlx.img);
 	mlx_destroy_display(game->mlx.mlx_ptr);
@@ -63,7 +63,7 @@ int	keypress(int key, t_game *game)
 	return (FALSE);
 }
 
-void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
+void	put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
@@ -81,11 +81,11 @@ void	draw_rect(t_mlx *mlx, int col, int row, int color)
 	{
 		x = -1;
 		while (++x < SQUARE)
-			ft_put_pixel(mlx, col * SQUARE + x, row * SQUARE + y, color);
+			put_pixel(mlx, col * SQUARE + x, row * SQUARE + y, color);
 	}
 }
 
-int	render(t_map *map, t_mlx *mlx)
+void	render(t_map *map, t_mlx *mlx)
 {
 	int	row;
 	int	col;
@@ -110,10 +110,16 @@ int	render(t_map *map, t_mlx *mlx)
 				draw_rect(mlx, col, row, create_rgb(255, 128, 255));
 		}
 	}
+}
+
+int	graphics(t_game *game)
+{
+	render(&game->map, &game->mlx);
+	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win, game->mlx.img, 0, 0);
 	return (0);
 }
 
-void	init_mlx(t_mlx *mlx, int width, int height)
+void	mlx_load(t_mlx *mlx, int width, int height)
 {
 	mlx->width = width * SQUARE;
 	mlx->height = height * SQUARE;
@@ -129,14 +135,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_handler(NULL, "Usage: ./so_long <map_file.ber>", EXIT_FAILURE);
-	map_loader(&game.map, argv[1]);
-	map_validator(&game.map);
-	ft_printf("x: %d, y: %d\n", game.map.rows, game.map.cols);
+	map_load(&game.map, argv[1]);
+	ft_printf("x: %d, y: %d\n", game.map.cols, game.map.rows);
 	ft_matrix_print(game.map.grid);
-	init_mlx(&game.mlx, game.map.cols, game.map.rows);
-	//render(&game.map, &game.mlx);
-	mlx_put_image_to_window(game.mlx.mlx_ptr, game.mlx.win, game.mlx.img, 0, 0);
+	mlx_load(&game.mlx, game.map.cols, game.map.rows);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &keypress, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game);
+	mlx_loop_hook(game.mlx.mlx_ptr, &graphics, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }
