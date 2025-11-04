@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 21:19:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/10/31 20:40:44 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:39:37 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ void	validate_elements(t_map *map)
 	int	j;
 
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->rows)
 	{
 		j = -1;
-		while (++j < map->width)
+		while (++j < map->cols)
 		{
 			if (map->grid[i][j] == 'C')
 				map->collectibles++;
 			else if (map->grid[i][j] == 'E' && ++map->exits)
 			{
-				map->end.x = j;
-				map->end.y = i;
+				map->exit.x = j;
+				map->exit.y = i;
 			}
 			else if (map->grid[i][j] == 'P' && ++map->players)
 			{
-				map->init.x = j;
-				map->init.y = i;
+				map->player.x = j;
+				map->player.y = i;
 			}
 		}
 	}

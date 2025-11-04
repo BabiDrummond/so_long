@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 21:36:22 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:46:49 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,25 @@ void	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-void	move_player()
+void	move_player(t_map *map, int x, int y)
 {
+	t_pos	curr;
+	t_pos	next;
 	
+	curr.y = map->player.y;
+	curr.x = map->player.x;
+	next.y = curr.y + y;
+	next.x = curr.x + x;
+	if (map->grid[next.y][next.x] != '1')
+	{
+		map->grid[curr.y][curr.x] = '0';
+		map->grid[next.y][next.x] = 'P';
+		map->player.y = next.y;
+		map->player.x = next.x;
+		if (map->grid[next.y][next.x] == 'C')
+			map->collectibles--;
+	}
+	ft_matrix_print(map->grid);
 }
 
 int	keypress(int key, t_game *game)
@@ -37,13 +53,13 @@ int	keypress(int key, t_game *game)
 	if (key == ESC)
 		close_window(game);
 	if (key == W)
-		ft_printf("Key pressed: %c\n", key);
+		move_player(&game->map, 0, -1);
 	if (key == A)
-		ft_printf("Key pressed: %c\n", key);
+		move_player(&game->map, -1, 0);
 	if (key == S)
-		ft_printf("Key pressed: %c\n", key);
+		move_player(&game->map, 0, 1);
 	if (key == D)
-		ft_printf("Key pressed: %c\n", key);
+		move_player(&game->map, 1, 0);
 	return (FALSE);
 }
 
@@ -71,14 +87,14 @@ void	draw_rect(t_mlx *mlx, int col, int row, int color)
 
 int	render(t_map *map, t_mlx *mlx)
 {
-	int	col;
 	int	row;
+	int	col;
 
 	row = -1;
-	while (++row < map->height)
+	while (++row < map->rows)
 	{
 		col = -1;
-		while (++col < map->width)
+		while (++col < map->cols)
 		{
 			if (map->grid[row][col] == '0')
 				draw_rect(mlx, col, row, create_rgb(70, 200, 200));
@@ -115,12 +131,12 @@ int	main(int argc, char **argv)
 		error_handler(NULL, "Usage: ./so_long <map_file.ber>", EXIT_FAILURE);
 	map_loader(&game.map, argv[1]);
 	map_validator(&game.map);
-	// ft_printf("x: %d, y: %d\n", game.map.width, game.map.height);
-	// ft_matrix_print(game.map.grid);
-	init_mlx(&game.mlx, game.map.width, game.map.height);
-	render(&game.map, &game.mlx);
+	ft_printf("x: %d, y: %d\n", game.map.rows, game.map.cols);
+	ft_matrix_print(game.map.grid);
+	init_mlx(&game.mlx, game.map.cols, game.map.rows);
+	//render(&game.map, &game.mlx);
 	mlx_put_image_to_window(game.mlx.mlx_ptr, game.mlx.win, game.mlx.img, 0, 0);
-	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game.mlx);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &keypress, &game);
+	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }

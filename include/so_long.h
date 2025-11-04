@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 21:21:19 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:38:35 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef struct s_map
 	int		collectibles;
 	int		players;
 	int		exits;
-	int		height;
-	int		width;
-	t_pos	init;
-	t_pos	end;
+	int		rows;
+	int		cols;
+	t_pos	player;
+	t_pos	exit;
 }	t_map;
 
 typedef struct s_mlx
