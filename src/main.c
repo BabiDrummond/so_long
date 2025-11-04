@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 20:34:24 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:16:50 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	keypress(int key, t_game *game)
 {
 	if (key == ESC)
 		close_window(game);
-	else
+	if (key == A)
 		ft_printf("Key pressed: %c\n", key);
 	return (FALSE);
 }
@@ -86,6 +86,16 @@ int	render(t_map *map, t_mlx *mlx)
 	return (0);
 }
 
+void	init_mlx(t_mlx *mlx, int width, int height)
+{
+	mlx->width = width * SQUARE;
+	mlx->height = height * SQUARE;
+	mlx->mlx_ptr = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height, "So long");
+	mlx->img = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_size, &mlx->endian);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -94,17 +104,9 @@ int	main(int argc, char **argv)
 		error_handler(NULL, "Usage: ./so_long <map_file.ber>", EXIT_FAILURE);
 	map_loader(&game.map, argv[1]);
 	map_validator(&game.map);
-	ft_printf("x: %d, y: %d\n", game.map.width, game.map.height);
-	ft_matrix_print(game.map.grid);
-	game.mlx.width = game.map.width * SQUARE;
-	game.mlx.height = game.map.height * SQUARE;
-	game.mlx.mlx_ptr = mlx_init();
-	game.mlx.win = mlx_new_window(game.mlx.mlx_ptr, game.mlx.width,
-			game.mlx.height, "Hello World");
-	game.mlx.img = mlx_new_image(game.mlx.mlx_ptr, game.mlx.width,
-			game.mlx.height);
-	game.mlx.addr = mlx_get_data_addr(game.mlx.img, &game.mlx.bpp,
-			&game.mlx.line_size, &game.mlx.endian);
+	// ft_printf("x: %d, y: %d\n", game.map.width, game.map.height);
+	// ft_matrix_print(game.map.grid);
+	init_mlx(&game.mlx, game.map.width, game.map.height);
 	render(&game.map, &game.mlx);
 	mlx_put_image_to_window(game.mlx.mlx_ptr, game.mlx.win, game.mlx.img, 0, 0);
 	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game.mlx);

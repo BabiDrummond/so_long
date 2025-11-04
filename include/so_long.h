@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/03 20:03:39 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:21:19 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 # include "../mlx/mlx.h"
 # include "../libft/include/libft.h"
 
-# define EXIT_SUCCESS 0
-# define EXIT_FAILURE 1
-
-# define TRUE 1
-# define FALSE 0
-
 # define SQUARE 32
 
-# define ESC 65307
+typedef enum e_keys
+{
+	ESC = 65307,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100,
+}	t_keys;
 
 typedef struct s_pos
 {
