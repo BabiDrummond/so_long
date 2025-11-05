@@ -11,7 +11,16 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
-SRCS = parsing/map_init.c 			\
+SRCS = display/close_window.c		\
+	display/draw_background.c		\
+	display/draw_rect.c				\
+	display/get_rgb.c				\
+	display/put_pixel.c				\
+	display/render.c				\
+	gameplay/check_exit.c			\
+	gameplay/key_press.c			\
+	gameplay/move_player.c			\
+	parsing/map_init.c 				\
 	parsing/map_load.c 				\
 	parsing/map_parse.c				\
 	parsing/map_read.c				\
@@ -21,7 +30,7 @@ SRCS = parsing/map_init.c 			\
 	validation/validate_path.c 		\
 	validation/validate_size.c 		\
 	validation/validate_walls.c 	\
-	utils/error_handler.c		\
+	utils/error_handler.c			\
 	main.c
 OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)

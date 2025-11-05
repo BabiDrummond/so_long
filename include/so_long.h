@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 20:53:42 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:55:40 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ typedef struct s_game
 	t_map	map;
 	t_mlx	mlx;
 }	t_game;
+
+// Display
+int		close_window(t_game *game);
+void	draw_background(t_map *map, t_mlx *mlx);
+void	draw_rect(t_mlx *mlx, int col, int row, int color);
+int		get_rgb(int r, int g, int b);
+void	put_pixel(t_mlx *mlx, int x, int y, int color);
+int		render(t_game *game);
+
+// Gameplay
+int		check_exit(t_game *game);
+int		key_press(int key, t_game *game);
+void	move_player(t_game *game, int x, int y);
 
 // Parsing
 void	map_init(t_map *map);
