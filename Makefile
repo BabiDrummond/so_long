@@ -21,7 +21,7 @@ SRCS = parsing/map_init.c 			\
 	validation/validate_path.c 		\
 	validation/validate_size.c 		\
 	validation/validate_walls.c 	\
-	utils/map_error_handler.c		\
+	utils/error_handler.c		\
 	main.c
 OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
@@ -57,13 +57,13 @@ fclean: clean
 re: fclean all
 
 run: re
-	./$(NAME) maps/map02.ber
+	./$(NAME) maps/map03.ber
 
 gdb: CFLAGS += -g -O0
 gdb: re
 	@gdb ./$(NAME) maps/map03.ber
 
 valgrind: re
-	valgrind ./$(NAME) maps/map02.ber
+	valgrind ./$(NAME) maps/map03.ber
 	
 .PHONY: $(LIBFT) clean fclean re

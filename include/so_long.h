@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 20:37:28 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:53:42 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	validate_size(t_map *map);
 void	validate_walls(t_map *map);
 
 // Utils
-void	map_error_handler(char **args, const char *error_msg, int exit_code);
+void	error_handler(char **args, const char *error_msg, int exit_code);
 
 #endif

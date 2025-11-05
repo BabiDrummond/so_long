@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 20:45:07 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:00:44 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	draw_rect(t_mlx *mlx, int col, int row, int color)
 	}
 }
 
-void	render(t_map *map, t_mlx *mlx)
+void	draw_background(t_map *map, t_mlx *mlx)
 {
 	int	row;
 	int	col;
@@ -110,12 +110,12 @@ void	render(t_map *map, t_mlx *mlx)
 				draw_rect(mlx, col, row, create_rgb(255, 128, 255));
 		}
 	}
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img, 0, 0);
 }
 
-int	graphics(t_game *game)
+int	render(t_game *game)
 {
-	render(&game->map, &game->mlx);
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win, game->mlx.img, 0, 0);
+	draw_background(&game->map, &game->mlx);
 	return (0);
 }
 
@@ -140,6 +140,6 @@ int	main(int argc, char **argv)
 	ft_matrix_print(game.map.grid);
 	mlx_load(&game.mlx, game.map.cols, game.map.rows);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &keypress, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, &graphics, &game);
+	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }
