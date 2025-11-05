@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 21:00:44 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:35:39 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_rgb(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-void	close_window(t_game *game)
+int	close_window(t_game *game)
 {
 	ft_matrix_free(game->map.grid);
 	mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win);
@@ -27,25 +27,37 @@ void	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-void	move_player(t_map *map, int x, int y)
+int	check_exit(t_game *game)
+{
+	if (game->map.collectibles == 0)
+		close_window(game);
+	return (FALSE);
+}
+
+void	move_player(t_game *game, int x, int y)
 {
 	t_pos	curr;
 	t_pos	next;
 	
-	curr.y = map->player.y;
-	curr.x = map->player.x;
+	curr.y = game->map.player.y;
+	curr.x = game->map.player.x;
 	next.y = curr.y + y;
 	next.x = curr.x + x;
-	if (map->grid[next.y][next.x] != '1')
+	if (game->map.grid[next.y][next.x] == 'C')
+			game->map.collectibles--;
+	if (game->map.grid[next.y][next.x] != '1')
 	{
-		map->grid[curr.y][curr.x] = '0';
-		map->grid[next.y][next.x] = 'P';
-		map->player.y = next.y;
-		map->player.x = next.x;
-		if (map->grid[next.y][next.x] == 'C')
-			map->collectibles--;
+		if (curr.y == game->map.exit.y && curr.x == game->map.exit.x
+			&& !check_exit(game))
+			game->map.grid[curr.y][curr.x] = 'E';
+		else
+			game->map.grid[curr.y][curr.x] = '0';
+		game->map.grid[next.y][next.x] = 'P';
+		game->map.player.y = next.y;
+		game->map.player.x = next.x;
 	}
-	ft_matrix_print(map->grid);
+	ft_matrix_print(game->map.grid);
+	ft_printf("collect: %d\n", game->map.collectibles);
 }
 
 int	keypress(int key, t_game *game)
@@ -53,14 +65,14 @@ int	keypress(int key, t_game *game)
 	if (key == ESC)
 		close_window(game);
 	if (key == W)
-		move_player(&game->map, 0, -1);
+		move_player(game, 0, -1);
 	if (key == A)
-		move_player(&game->map, -1, 0);
+		move_player(game, -1, 0);
 	if (key == S)
-		move_player(&game->map, 0, 1);
+		move_player(game, 0, 1);
 	if (key == D)
-		move_player(&game->map, 1, 0);
-	return (FALSE);
+		move_player(game, 1, 0);
+	return (0);
 }
 
 void	put_pixel(t_mlx *mlx, int x, int y, int color)
@@ -140,6 +152,7 @@ int	main(int argc, char **argv)
 	ft_matrix_print(game.map.grid);
 	mlx_load(&game.mlx, game.map.cols, game.map.rows);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &keypress, &game);
+	mlx_hook(game.mlx.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }
