@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:48:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 21:48:45 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:58:39 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	move_player(t_game *game, int x, int y)
 {
 	t_pos	curr;
 	t_pos	next;
-	
+
 	curr.y = game->map.player.y;
 	curr.x = game->map.player.x;
 	next.y = curr.y + y;

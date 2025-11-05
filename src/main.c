@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 21:53:30 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/04 22:00:07 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	mlx_load(t_mlx *mlx, int width, int height)
 	mlx->width = width * SQUARE;
 	mlx->height = height * SQUARE;
 	mlx->mlx_ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height, "So long");
+	mlx->win = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height, "SoLong");
 	mlx->img = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_size, &mlx->endian);
 }
