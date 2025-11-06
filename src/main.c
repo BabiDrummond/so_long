@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/05 22:20:35 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:48:37 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	ft_printf("x: %d, y: %d\n", game.map.cols, game.map.rows);
 	ft_matrix_print(game.map.grid);
 	mlx_load(&game.mlx, game.map.cols, game.map.rows);
-	game.imgs.img = mlx_xpm_file_to_image(game.mlx.mlx_ptr, "assets/wall.xpm", &game.imgs.width, &game.imgs.height);
+	game.sprites.img = mlx_xpm_file_to_image(game.mlx.mlx_ptr, "assets/xpm/07_bread.xpm", &game.sprites.width, &game.sprites.height);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &key_press, &game);
 	mlx_hook(game.mlx.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game);

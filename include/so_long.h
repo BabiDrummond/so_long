@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/05 21:52:07 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:45:12 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,27 @@ typedef enum e_keys
 	S = 115,
 	D = 100,
 }	t_keys;
+
+typedef enum e_sprites
+{
+	CAM_L = 0,
+	CAM_R = 1,
+	FRIDGE_C = 2,
+	FRIDGE_O = 3,
+	WALL = 4,
+	MILK = 5,
+	BUTTER = 6,
+	BREAD = 7,
+	P_L1 = 8,
+	P_L2 = 9,
+	P_L3 = 10,
+	P_L4 = 11,
+	P_R1 = 12,
+	P_R2 = 13,
+	P_R3 = 14,
+	P_R4 = 15,
+	FLOOR = 16,
+}	t_sprites;
 
 typedef struct s_pos
 {
@@ -54,13 +75,6 @@ typedef struct s_map
 	t_enemy	*enemies;
 }	t_map;
 
-typedef struct s_img
-{
-	void	*img;
-	int		height;
-	int		width;
-}	t_img;
-
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
@@ -69,11 +83,18 @@ typedef struct s_mlx
 	int		width;
 }	t_mlx;
 
+typedef struct s_sprite
+{
+	void	*img;
+	int		height;
+	int		width;
+}	t_sprite;
+
 typedef struct s_game
 {
-	t_map	map;
-	t_mlx	mlx;
-	t_img	imgs;
+	t_map		map;
+	t_mlx		mlx;
+	t_sprite	sprites;
 }	t_game;
 
 // Display
