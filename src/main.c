@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 22:00:07 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:20:35 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	mlx_load(t_mlx *mlx, int width, int height)
 {
-	mlx->width = width * SQUARE;
-	mlx->height = height * SQUARE;
+	mlx->width = width * TILE;
+	mlx->height = height * TILE;
 	mlx->mlx_ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height, "SoLong");
-	mlx->img = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
-	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_size, &mlx->endian);
 }
 
 int	main(int argc, char **argv)
@@ -32,6 +30,7 @@ int	main(int argc, char **argv)
 	ft_printf("x: %d, y: %d\n", game.map.cols, game.map.rows);
 	ft_matrix_print(game.map.grid);
 	mlx_load(&game.mlx, game.map.cols, game.map.rows);
+	game.imgs.img = mlx_xpm_file_to_image(game.mlx.mlx_ptr, "assets/wall.xpm", &game.imgs.width, &game.imgs.height);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &key_press, &game);
 	mlx_hook(game.mlx.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx.mlx_ptr, &render, &game);

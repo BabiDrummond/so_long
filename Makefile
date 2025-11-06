@@ -12,10 +12,7 @@ MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
 SRCS = display/close_window.c		\
-	display/draw_background.c		\
-	display/draw_rect.c				\
 	display/get_rgb.c				\
-	display/put_pixel.c				\
 	display/render.c				\
 	gameplay/check_exit.c			\
 	gameplay/key_press.c			\
@@ -24,13 +21,13 @@ SRCS = display/close_window.c		\
 	parsing/map_load.c 				\
 	parsing/map_parse.c				\
 	parsing/map_read.c				\
+	validation/map_error_handler.c	\
 	validation/validate_chars.c 	\
 	validation/validate_elements.c 	\
 	validation/validate_filename.c 	\
 	validation/validate_path.c 		\
 	validation/validate_size.c 		\
 	validation/validate_walls.c 	\
-	utils/error_handler.c			\
 	main.c
 OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
@@ -66,7 +63,7 @@ fclean: clean
 re: fclean all
 
 run: re
-	./$(NAME) maps/map03.ber
+	./$(NAME) maps/map01.ber
 
 gdb: CFLAGS += -g -O0
 gdb: re

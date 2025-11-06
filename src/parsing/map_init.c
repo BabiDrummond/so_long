@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:41:49 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 20:33:14 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:27:59 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	map_init(t_map *map)
 	map->collectibles = 0;
 	map->players = 0;
 	map->exits = 0;
+	map->rows = 0;
+	map->cols = 0;
 	map->player.x = 0;
 	map->player.y = 0;
 	map->exit.x = 0;
 	map->exit.y = 0;
-	map->rows = 0;
-	map->cols = 0;
 }

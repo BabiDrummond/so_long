@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/04 21:55:40 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/05 21:52:07 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../mlx/mlx.h"
 # include "../libft/include/libft.h"
 
-# define SQUARE 32
+# define TILE 64
 
 typedef enum e_keys
 {
@@ -36,6 +36,11 @@ typedef struct s_pos
 	int	y;
 }	t_pos;
 
+typedef struct s_enemy
+{
+	t_pos	pos;
+}	t_enemy;
+
 typedef struct s_map
 {
 	char	**grid;
@@ -46,17 +51,20 @@ typedef struct s_map
 	int		cols;
 	t_pos	player;
 	t_pos	exit;
+	t_enemy	*enemies;
 }	t_map;
+
+typedef struct s_img
+{
+	void	*img;
+	int		height;
+	int		width;
+}	t_img;
 
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win;
-	void	*img;
-	void	*addr;
-	int		bpp;
-	int		line_size;
-	int		endian;
 	int		height;
 	int		width;
 }	t_mlx;
@@ -65,14 +73,12 @@ typedef struct s_game
 {
 	t_map	map;
 	t_mlx	mlx;
+	t_img	imgs;
 }	t_game;
 
 // Display
 int		close_window(t_game *game);
-void	draw_background(t_map *map, t_mlx *mlx);
-void	draw_rect(t_mlx *mlx, int col, int row, int color);
 int		get_rgb(int r, int g, int b);
-void	put_pixel(t_mlx *mlx, int x, int y, int color);
 int		render(t_game *game);
 
 // Gameplay
@@ -87,14 +93,12 @@ void	map_parse(t_map *map, char *buffer);
 void	map_read(char **buffer, char *file_name);
 
 // Validation
+void	error_handler(char **args, const char *error_msg, int exit_code);
 void	validate_chars(t_map *map, const char *set);
 void	validate_elements(t_map *map);
 void	validate_filename(char *filename, char *extension);
 void 	validate_path(t_map *map);
 void	validate_size(t_map *map);
 void	validate_walls(t_map *map);
-
-// Utils
-void	error_handler(char **args, const char *error_msg, int exit_code);
 
 #endif
