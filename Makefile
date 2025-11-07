@@ -11,18 +11,20 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
-SRCS = graphics/close_window.c		\
-	graphics/get_rgb.c				\
-	graphics/render_game.c			\
+SRCS = graphics/get_rgb.c			\
+	graphics/destroy_sprites.c		\
+	graphics/render_sprites.c		\
 	graphics/load_sprites.c			\
 	gameplay/check_exit.c			\
+	gameplay/close_game.c			\
 	gameplay/key_press.c			\
 	gameplay/move_player.c			\
-	parsing/map_init.c 				\
+	parsing/map_init_values.c 		\
+	parsing/map_init_positions.c 	\
 	parsing/map_load.c 				\
 	parsing/map_parse.c				\
 	parsing/map_read.c				\
-	validation/map_error_handler.c	\
+	validation/error_handler.c		\
 	validation/validate_chars.c 	\
 	validation/validate_elements.c 	\
 	validation/validate_filename.c 	\

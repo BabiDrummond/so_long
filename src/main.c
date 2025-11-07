@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/06 21:38:13 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:58:48 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	mlx_load(&game.mlx, game.map.cols, game.map.rows);
 	load_sprites(&game);
 	mlx_hook(game.mlx.win, 2, 1L << 0, &key_press, &game);
-	mlx_hook(game.mlx.win, 17, 1L << 17, &close_window, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, &render_game, &game);
+	mlx_hook(game.mlx.win, 17, 1L << 17, &close_game, &game);
+	mlx_loop_hook(game.mlx.mlx_ptr, &render_sprites, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }

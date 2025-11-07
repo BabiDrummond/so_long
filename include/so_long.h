@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/06 21:37:33 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:57:51 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "../mlx/mlx.h"
 # include "../libft/include/libft.h"
 
+# define SET "01CEMP"
 # define TILE 64
-
 # define SPRITES 18
 
 typedef enum e_keys
@@ -60,22 +60,24 @@ typedef struct s_pos
 	int	y;
 }	t_pos;
 
-typedef struct s_enemy
+typedef struct s_monster
 {
 	t_pos	pos;
-}	t_enemy;
+	int		move;
+}	t_monster;
 
 typedef struct s_map
 {
-	char	**grid;
-	int		collectibles;
-	int		players;
-	int		exits;
-	int		rows;
-	int		cols;
-	t_pos	player;
-	t_pos	exit;
-	t_enemy	*enemies;
+	char		**grid;
+	int			collectibles;
+	int			players;
+	int			exits;
+	int			monsters;
+	int			rows;
+	int			cols;
+	t_pos		player;
+	t_pos		exit;
+	t_monster	*monster;
 }	t_map;
 
 typedef struct s_mlx
@@ -97,22 +99,24 @@ typedef struct s_game
 int		check_exit(t_game *game);
 int		key_press(int key, t_game *game);
 void	move_player(t_game *game, int x, int y);
+int		close_game(t_game *game);
 
 // Graphics
-int		close_window(t_game *game);
 int		get_rgb(int r, int g, int b);
-int		render_game(t_game *game);
+void	destroy_sprites(t_game *game);
 void	load_sprites(t_game *game);
+int		render_sprites(t_game *game);
 
 // Parsing
-void	map_init(t_map *map);
+void	map_init_values(t_map *map);
+void	map_init_positions(t_map *map);
 void	map_load(t_map *map, char *filename);
 void	map_parse(t_map *map, char *buffer);
 void	map_read(char **buffer, char *file_name);
 
 // Validation
 void	error_handler(char **args, const char *error_msg, int exit_code);
-void	validate_chars(t_map *map, const char *set);
+void	validate_chars(t_map *map);
 void	validate_elements(t_map *map);
 void	validate_filename(char *filename, char *extension);
 void 	validate_path(t_map *map);

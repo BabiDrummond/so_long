@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:06:15 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/06 21:16:35 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:58:39 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	load_player_sprites(t_game *game, int width, int height)
 		"assets/xpm/play8.xpm", &width, &height);
 }
 
-static void	load_enemy_sprites(t_game *game, int width, int height)
+static void	load_monster_sprites(t_game *game, int width, int height)
 {
 	game->img[CAM1] = mlx_xpm_file_to_image(game->mlx.mlx_ptr, 
 		"assets/xpm/cam1.xpm", &width, &height);
@@ -76,8 +76,8 @@ void	load_sprites(t_game *game)
 	load_environment_sprites(game, width, height);
 	load_collectible_sprites(game, width, height);
 	load_player_sprites(game, width, height);
-	load_enemy_sprites(game, width, height);
+	load_monster_sprites(game, width, height);
 	while (++i < SPRITES)
 		if (!game->img[i])
-			close_window(game);
+			close_game(game);
 }

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_exit.c                                       :+:      :+:    :+:   */
+/*   destroy_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 21:51:19 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 14:52:01 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/11/07 17:55:41 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/11/07 17:55:58 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_exit(t_game *game)
+void	destroy_sprites(t_game *game)
 {
-	if (game->map.collectibles == 0)
-		close_game(game);
-	return (FALSE);
+	int	i;
+
+	i = -1;
+	while (++i < SPRITES)
+		if (game->img[i])
+			mlx_destroy_image(game->mlx.mlx_ptr, game->img[i]);
 }
