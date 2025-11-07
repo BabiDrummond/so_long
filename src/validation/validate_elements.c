@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 21:17:13 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 17:51:39 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:04:45 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	validate_elements(t_map *map)
 		}
 	}
 	if (map->collectibles < 1 || map->monsters < 1
-		 || map->players != 1 || map->exits != 1)
+		|| map->players != 1 || map->exits != 1)
 		error_handler(map->grid, "Invalid elements in map.", EXIT_FAILURE);
 }

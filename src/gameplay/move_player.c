@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:48:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 16:37:01 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:02:35 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_player(t_game *game, int x, int y)
 	curr.x = game->map.player.x;
 	next.y = curr.y + y;
 	next.x = curr.x + x;
-	if (game->map.grid[next.y][next.x] == 'X' 
+	if (game->map.grid[next.y][next.x] == 'X'
 		|| game->map.grid[next.y][next.x] == 'Y'
 		|| game->map.grid[next.y][next.x] == 'Z')
 			game->map.collectibles--;

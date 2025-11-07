@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 21:17:13 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 17:51:48 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:04:57 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	validate_chars(t_map *map)
 		j = -1;
 		while (++j < map->cols)
 			if (!ft_strchr(SET, map->grid[i][j]))
-				error_handler(map->grid, "Invalid chars in map.", 
+				error_handler(map->grid, "Invalid chars in map.",
 					EXIT_FAILURE);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:15:11 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 17:35:52 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:06:34 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_exit(t_map *map)
 	{
 		j = -1;
 		while (++j < map->cols)
-			if (map->grid[i][j] == 'E')				
+			if (map->grid[i][j] == 'E')
 				map->exit = (t_pos){j, i};
 	}
 }
@@ -68,16 +68,16 @@ void	init_collectibles(t_map *map)
 		while (++j < map->cols)
 		{
 			if (map->grid[i][j] == 'C' && ++item)
-	        {
-		        if (item == 4)
-			        item = 0;
-		        if (item % 3 == 0)
-			        map->grid[i][j] = 'X';
-		        if (item % 3 == 1)
-			        map->grid[i][j] = 'Y';
-		        if (item % 3 == 2)
-			        map->grid[i][j] = 'Z';
-	        }
+			{
+				if (item == 4)
+					item = 0;
+				if (item % 3 == 0)
+					map->grid[i][j] = 'X';
+				if (item % 3 == 1)
+					map->grid[i][j] = 'Y';
+				if (item % 3 == 2)
+					map->grid[i][j] = 'Z';
+			}
 		}
 	}
 }
@@ -86,8 +86,8 @@ void	init_monsters(t_map *map)
 {
 	int	i;
 	int	j;
-	int k;
-	
+	int	k;
+
 	i = -1;
 	k = 0;
 	map->monster = ft_calloc(sizeof(t_monster), map->monsters + 1);
@@ -96,7 +96,7 @@ void	init_monsters(t_map *map)
 		j = -1;
 		while (++j < map->cols)
 			if (map->grid[i][j] == 'M')
-				map->monster[k++] = (t_monster){(t_pos) {j, i}, 0};
+				map->monster[k++] = (t_monster){(t_pos){j, i}, 0};
 	}
 }
 

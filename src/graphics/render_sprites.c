@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_game.c                                      :+:      :+:    :+:   */
+/*   render_sprites.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:52:29 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 17:56:42 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:03:47 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	render_environment(t_game *game, int col, int row, char tile)
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
 			game->img[FLOOR], col * TILE, row * TILE);
 	if (tile == '1' && (row == 0 && col == 1))
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
-				game->img[WALL2], col * TILE, row * TILE);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
+			game->img[WALL2], col * TILE, row * TILE);
 	if (tile == '1' && (row != 0 || col != 1))
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
-				game->img[WALL], col * TILE, row * TILE);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
+			game->img[WALL], col * TILE, row * TILE);
 	if (tile == 'E')
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
 			game->img[FRID2], col * TILE, row * TILE);
@@ -32,13 +32,13 @@ static void	render_collectible(t_game *game, int col, int row, char tile)
 {
 	if (tile == 'X')
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
-		game->img[BREAD], col * TILE, row * TILE);
+			game->img[BREAD], col * TILE, row * TILE);
 	if (tile == 'Y')
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
-		game->img[MILK], col * TILE, row * TILE);
+			game->img[MILK], col * TILE, row * TILE);
 	if (tile == 'Z')
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
-		game->img[BUTTER], col * TILE, row * TILE);
+			game->img[BUTTER], col * TILE, row * TILE);
 }
 
 static void	render_player(t_game *game, int col, int row)
