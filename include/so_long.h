@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/06 18:45:12 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:37:33 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,37 @@
 
 # define TILE 64
 
+# define SPRITES 18
+
 typedef enum e_keys
 {
 	ESC = 65307,
-	W = 119,
-	A = 97,
-	S = 115,
-	D = 100,
+	UP = 119,
+	LEFT = 97,
+	DOWN = 115,
+	RIGHT = 100,
 }	t_keys;
 
 typedef enum e_sprites
 {
-	CAM_L = 0,
-	CAM_R = 1,
-	FRIDGE_C = 2,
-	FRIDGE_O = 3,
-	WALL = 4,
-	MILK = 5,
-	BUTTER = 6,
-	BREAD = 7,
-	P_L1 = 8,
-	P_L2 = 9,
-	P_L3 = 10,
-	P_L4 = 11,
-	P_R1 = 12,
-	P_R2 = 13,
-	P_R3 = 14,
-	P_R4 = 15,
-	FLOOR = 16,
+	FLOOR = 0,
+	FRID1 = 1,
+	FRID2 = 2,
+	WALL = 3,
+	WALL2 = 4,
+	CAM1 = 5,
+	CAM2 = 6,
+	MILK = 7,
+	BUTTER = 8,
+	BREAD = 9,
+	PLAY1 = 10,
+	PLAY2 = 11,
+	PLAY3 = 12,
+	PLAY4 = 13,
+	PLAY5 = 14,
+	PLAY6 = 15,
+	PLAY7 = 16,
+	PLAY8 = 17,
 }	t_sprites;
 
 typedef struct s_pos
@@ -83,29 +86,23 @@ typedef struct s_mlx
 	int		width;
 }	t_mlx;
 
-typedef struct s_sprite
-{
-	void	*img;
-	int		height;
-	int		width;
-}	t_sprite;
-
 typedef struct s_game
 {
-	t_map		map;
-	t_mlx		mlx;
-	t_sprite	sprites;
+	t_map	map;
+	t_mlx	mlx;
+	void	*img[SPRITES];
 }	t_game;
-
-// Display
-int		close_window(t_game *game);
-int		get_rgb(int r, int g, int b);
-int		render(t_game *game);
 
 // Gameplay
 int		check_exit(t_game *game);
 int		key_press(int key, t_game *game);
 void	move_player(t_game *game, int x, int y);
+
+// Graphics
+int		close_window(t_game *game);
+int		get_rgb(int r, int g, int b);
+int		render_game(t_game *game);
+void	load_sprites(t_game *game);
 
 // Parsing
 void	map_init(t_map *map);

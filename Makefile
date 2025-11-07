@@ -11,9 +11,10 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
-SRCS = display/close_window.c		\
-	display/get_rgb.c				\
-	display/render.c				\
+SRCS = graphics/close_window.c		\
+	graphics/get_rgb.c				\
+	graphics/render_game.c			\
+	graphics/load_sprites.c			\
 	gameplay/check_exit.c			\
 	gameplay/key_press.c			\
 	gameplay/move_player.c			\
@@ -63,13 +64,13 @@ fclean: clean
 re: fclean all
 
 run: re
-	./$(NAME) maps/map01.ber
+	./$(NAME) maps/map04.ber
 
 gdb: CFLAGS += -g -O0
 gdb: re
 	@gdb ./$(NAME) maps/map03.ber
 
 valgrind: re
-	valgrind ./$(NAME) maps/map03.ber
+	valgrind ./$(NAME) maps/map04.ber
 	
 .PHONY: $(LIBFT) clean fclean re
