@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_game.c                                     :+:      :+:    :+:   */
+/*   game_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 21:52:00 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 19:14:58 by bmoreira         ###   ########.fr       */
+/*   Created: 2025/11/07 22:42:45 by bmoreira          #+#    #+#             */
+/*   Updated: 2025/11/07 22:42:50 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	destroy_mlx(t_mlx *mlx)
 	}
 }
 
-int	destroy_game(t_game *game)
+int	game_destroy(t_game *game)
 {
 	ft_matrix_free(game->map.grid);
 	destroy_sprites(game);

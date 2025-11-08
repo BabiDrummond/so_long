@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:28:18 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:41:21 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,16 @@ typedef struct s_game
 	int		direction;
 	int		e_direction;
 	int		collected;
-	int		game_over;
+	int		game_destroy;
 	void	*img[SPRITES];
 }	t_game;
 
 // Gameplay
 int		key_press(int key, t_game *game);
+void	game_init_values(t_game *game);
+int		game_loop(t_game *game);
+int		game_destroy(t_game *game);
 void	move_player(t_game *game, int x, int y);
-int		destroy_game(t_game *game);
 
 // Graphics
 int		get_rgb(int r, int g, int b);

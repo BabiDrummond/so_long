@@ -15,7 +15,9 @@ SRCS = graphics/get_rgb.c			\
 	graphics/load_sprites.c			\
 	graphics/render_game.c			\
 	graphics/game_sleep.c			\
-	gameplay/destroy_game.c			\
+	gameplay/game_destroy.c			\
+	gameplay/game_init_values.c		\
+	gameplay/game_loop.c			\
 	gameplay/key_press.c			\
 	gameplay/move_player.c			\
 	parsing/map_init_values.c 		\

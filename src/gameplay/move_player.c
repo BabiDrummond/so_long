@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:48:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:34:22 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:41:21 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	move_player(t_game *game, int next_x, int next_y)
 	if (ft_strchr("XYZ", next_tile))
 			game->collected++;
 	if (next_tile == 'M')
-		destroy_game(game);
+		game_destroy(game);
 	if (next_tile == 'E' && game->collected == game->map.collectibles)
-		destroy_game(game);
+		game_destroy(game);
 	if (curr.x == game->map.exit.x && curr.y == game->map.exit.y)
 		game->map.grid[curr.y][curr.x] = 'E';
 	else
