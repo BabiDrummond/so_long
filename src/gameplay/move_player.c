@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:48:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:41:21 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/08 00:05:51 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,4 @@ void	move_player(t_game *game, int next_x, int next_y)
 	game->map.grid[next_y][next_x] = 'P';
 	game->map.player = (t_pos){next_x, next_y};
 	game->moves++;
-	ft_matrix_print(game->map.grid);
-	ft_printf("collect: %d, collected: %d\n",
-		game->map.collectibles, game->collected);
 }

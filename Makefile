@@ -20,6 +20,7 @@ SRCS = graphics/get_rgb.c			\
 	gameplay/game_init_values.c		\
 	gameplay/game_loop.c			\
 	gameplay/key_press.c			\
+	gameplay/move_monsters.c		\
 	gameplay/move_player.c			\
 	parsing/map_init_values.c 		\
 	parsing/map_init_positions.c 	\
@@ -38,6 +39,8 @@ OBJS_DIR = objs/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 
 all: $(NAME)
+
+bonus: re all
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(MLX) $(MLX_DEPENCENCIES) -o $(NAME)
@@ -75,6 +78,6 @@ gdb: re
 	@gdb ./$(NAME) maps/map03.ber
 
 valgrind: re
-	valgrind ./$(NAME) maps/map04.ber
+	valgrind ./$(NAME) maps/map05.ber
 	
-.PHONY: $(LIBFT) clean fclean re
+.PHONY: $(LIBFT) clean fclean re bonus

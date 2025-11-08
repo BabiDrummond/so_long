@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:53:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:21:05 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 23:59:59 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	validate_path(t_map *map)
 	map_dup.grid = ft_matrix_dup(map->grid);
 	map_dup.collectibles = map->collectibles;
 	map_dup.exits = map->exits;
-	if (!flood_fill(&map_dup, map->player.y, map->player.x)
-		&& !ft_matrix_free(map_dup.grid))
+	if (!flood_fill(&map_dup, map->player.y, map->player.x))
+	{
+		ft_matrix_free(map_dup.grid);
+		free(map->monster);
 		error_handler(map->grid, "No valid path.", EXIT_FAILURE);
+	}
 	ft_matrix_free(map_dup.grid);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:15:11 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 19:16:35 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:54:20 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	init_monsters(t_map *map)
 		j = -1;
 		while (++j < map->cols)
 			if (map->grid[i][j] == 'M')
-				map->monster[k++] = (t_monster){(t_pos){j, i}, 0};
+				map->monster[k++] = (t_monster){(t_pos){j, i}, 0, 0};
 	}
 }
 

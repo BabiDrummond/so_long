@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:52:29 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:44:42 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 23:47:51 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,12 @@ static void	render_player(t_game *game, int col, int row)
 
 static void	render_monster(t_game *game, int col, int row)
 {
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
-		game->img[CAM1], col * TILE, row * TILE);
+	if (game->map.monster->direction == 0)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
+			game->img[CAM1], col * TILE, row * TILE);
+	if (game->map.monster->direction == 1)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win,
+			game->img[CAM2], col * TILE, row * TILE);
 }
 
 static void	render_interface(t_game *game, int col, int row)
@@ -107,7 +111,7 @@ void	game_render(t_game *game)
 				render_player(game, col, row);
 			if (tile == 'M')
 				render_monster(game, col, row);
+			render_interface(game, (game->map.cols / 2) * TILE, (1 * TILE) / 2);
 		}
 	}
-	render_interface(game, (game->map.cols / 2) * TILE, (1 * TILE) / 2);
 }
