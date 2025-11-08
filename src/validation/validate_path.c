@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:53:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 17:41:20 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:21:05 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	flood_fill(t_map *map, int row, int col)
 		return (TRUE);
 	if (map->grid[row][col] == 'E')
 		map->exits--;
-	if (map->grid[row][col] == 'X'
-		|| map->grid[row][col] == 'Y'
-		|| map->grid[row][col] == 'Z')
+	if (ft_strchr("XYZ", map->grid[row][col]))
 		map->collectibles--;
 	if (map->grid[row][col] == '1')
 		return (FALSE);

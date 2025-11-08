@@ -12,11 +12,10 @@ MLX_DEPENCENCIES = -lXext -lX11 -lm -lz -lpthread
 
 SRCS_DIR = src/
 SRCS = graphics/get_rgb.c			\
-	graphics/destroy_sprites.c		\
-	graphics/render_sprites.c		\
 	graphics/load_sprites.c			\
-	gameplay/check_exit.c			\
-	gameplay/close_game.c			\
+	graphics/render_game.c			\
+	graphics/game_sleep.c			\
+	gameplay/destroy_game.c			\
 	gameplay/key_press.c			\
 	gameplay/move_player.c			\
 	parsing/map_init_values.c 		\

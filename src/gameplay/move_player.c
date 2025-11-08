@@ -6,36 +6,35 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:48:30 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 18:02:35 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:34:22 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_player(t_game *game, int x, int y)
+void	move_player(t_game *game, int next_x, int next_y)
 {
 	t_pos	curr;
-	t_pos	next;
+	char	next_tile;
 
-	curr.y = game->map.player.y;
-	curr.x = game->map.player.x;
-	next.y = curr.y + y;
-	next.x = curr.x + x;
-	if (game->map.grid[next.y][next.x] == 'X'
-		|| game->map.grid[next.y][next.x] == 'Y'
-		|| game->map.grid[next.y][next.x] == 'Z')
-			game->map.collectibles--;
-	if (game->map.grid[next.y][next.x] != '1')
-	{
-		if (curr.y == game->map.exit.y && curr.x == game->map.exit.x
-			&& !check_exit(game))
-			game->map.grid[curr.y][curr.x] = 'E';
-		else
-			game->map.grid[curr.y][curr.x] = '0';
-		game->map.grid[next.y][next.x] = 'P';
-		game->map.player.y = next.y;
-		game->map.player.x = next.x;
-	}
+	curr = (t_pos){game->map.player.x, game->map.player.y};
+	next_tile = game->map.grid[next_y][next_x];
+	if (next_tile == '1')
+		return ;
+	if (ft_strchr("XYZ", next_tile))
+			game->collected++;
+	if (next_tile == 'M')
+		destroy_game(game);
+	if (next_tile == 'E' && game->collected == game->map.collectibles)
+		destroy_game(game);
+	if (curr.x == game->map.exit.x && curr.y == game->map.exit.y)
+		game->map.grid[curr.y][curr.x] = 'E';
+	else
+		game->map.grid[curr.y][curr.x] = '0';
+	game->map.grid[next_y][next_x] = 'P';
+	game->map.player = (t_pos){next_x, next_y};
+	game->moves++;
 	ft_matrix_print(game->map.grid);
-	ft_printf("collect: %d\n", game->map.collectibles);
+	ft_printf("collect: %d, collected: %d\n",
+		game->map.collectibles, game->collected);
 }

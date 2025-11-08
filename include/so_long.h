@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 17:57:51 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:28:18 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/time.h>
 # include "../mlx/mlx.h"
 # include "../libft/include/libft.h"
 
 # define SET "01CEMP"
 # define TILE 64
 # define SPRITES 18
+# define FRAME_MAX 60
 
 typedef enum e_keys
 {
@@ -63,7 +65,7 @@ typedef struct s_pos
 typedef struct s_monster
 {
 	t_pos	pos;
-	int		move;
+	int		direction;
 }	t_monster;
 
 typedef struct s_map
@@ -92,20 +94,26 @@ typedef struct s_game
 {
 	t_map	map;
 	t_mlx	mlx;
+	int		render;
+	int		frames;
+	int		moves;
+	int		direction;
+	int		e_direction;
+	int		collected;
+	int		game_over;
 	void	*img[SPRITES];
 }	t_game;
 
 // Gameplay
-int		check_exit(t_game *game);
 int		key_press(int key, t_game *game);
 void	move_player(t_game *game, int x, int y);
-int		close_game(t_game *game);
+int		destroy_game(t_game *game);
 
 // Graphics
 int		get_rgb(int r, int g, int b);
-void	destroy_sprites(t_game *game);
 void	load_sprites(t_game *game);
-int		render_sprites(t_game *game);
+void	render_game(t_game *game);
+void	game_sleep(long usec);
 
 // Parsing
 void	map_init_values(t_map *map);

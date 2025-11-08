@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:15:11 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 18:06:34 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:16:35 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #include "so_long.h"
 
-void	init_player(t_map *map)
+static void	init_player(t_map *map)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ void	init_player(t_map *map)
 	}
 }
 
-void	init_exit(t_map *map)
+static void	init_exit(t_map *map)
 {
 	int	i;
 	int	j;
@@ -54,7 +54,7 @@ void	init_exit(t_map *map)
 	}
 }
 
-void	init_collectibles(t_map *map)
+static void	init_collectibles(t_map *map)
 {
 	int	i;
 	int	j;
@@ -82,7 +82,7 @@ void	init_collectibles(t_map *map)
 	}
 }
 
-void	init_monsters(t_map *map)
+static void	init_monsters(t_map *map)
 {
 	int	i;
 	int	j;
@@ -91,6 +91,8 @@ void	init_monsters(t_map *map)
 	i = -1;
 	k = 0;
 	map->monster = ft_calloc(sizeof(t_monster), map->monsters + 1);
+	if (!map->monster)
+		error_handler(map->grid, "Error to init enemies.", EXIT_FAILURE);
 	while (++i < map->rows)
 	{
 		j = -1;

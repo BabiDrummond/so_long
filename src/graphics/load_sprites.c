@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:06:15 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 18:04:31 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:37:24 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	load_sprites(t_game *game)
 	load_monster_sprites(game, width, height);
 	while (++i < SPRITES)
 		if (!game->img[i])
-			close_game(game);
+			destroy_game(game);
 }
