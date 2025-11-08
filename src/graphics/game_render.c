@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_game.c                                      :+:      :+:    :+:   */
+/*   game_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:52:29 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:33:56 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:44:42 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	render_interface(t_game *game, int col, int row)
 	free(text);
 }
 
-void	render_game(t_game *game)
+void	game_render(t_game *game)
 {
 	char	tile;
 	int		row;

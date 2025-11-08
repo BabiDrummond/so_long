@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:59:16 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:41:21 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:44:21 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ void	move_player(t_game *game, int x, int y);
 
 // Graphics
 int		get_rgb(int r, int g, int b);
+void	load_mlx(t_game *game);
 void	load_sprites(t_game *game);
-void	render_game(t_game *game);
+void	game_render(t_game *game);
 void	game_sleep(long usec);
 
 // Parsing
