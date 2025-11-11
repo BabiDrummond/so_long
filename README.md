@@ -1,5 +1,7 @@
 # so_long
-
+<p align="center">
+  <img src="so_long.gif" alt="Game demonstration">
+</p>
 So_long is a project from 42 school (École 42) in C designed to create your own 2D game in C.
 
 ## Overview
