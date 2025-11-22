@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:53:40 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:41:21 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/22 12:25:04 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	key_press(int key, t_game *game)
 {
-	if (key == ESC)
+	if (key == ESC && ft_printf("Exiting game...\n"))
 		game_destroy(game);
 	if (key == UP)
 		move_player(game, game->map.player.x + 0, game->map.player.y - 1);

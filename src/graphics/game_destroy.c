@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 22:42:45 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 22:42:50 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/11/22 12:32:26 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	game_destroy(t_game *game)
 	destroy_sprites(game);
 	destroy_monsters(game);
 	destroy_mlx(&game->mlx);
+	ft_printf("Moves: %d\nCollected: %d\n", game->moves, game->collected);
 	exit(EXIT_SUCCESS);
 }
