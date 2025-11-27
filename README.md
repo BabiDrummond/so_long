@@ -68,6 +68,14 @@ Legend:
 
 ## Running the Game
 
+### Requirements
+For building this project you may need to install some required graphical libraries. If you use Linux, just run in your terminal:
+```bash
+sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+```
+
+More information or other O.S, please check the [documentation](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html).
+
 ### Build
 ```bash
 make
