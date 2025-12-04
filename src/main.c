@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 18:54:18 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/22 12:35:58 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:06:33 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_handler(NULL, "Usage: ./so_long <map_file.ber>", EXIT_FAILURE);
-
 	ft_printf("____________________Welcome to so_long!____________________\n");
 	map_load(&game.map, argv[1]);
 	game_init_values(&game);

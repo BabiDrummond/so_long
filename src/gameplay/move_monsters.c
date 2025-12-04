@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 22:49:33 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/22 12:33:25 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:07:34 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	set_new_pos(t_game *game, t_monster *monster, t_pos *new_pos)
 	tile = game->map.grid[new_pos->y][new_pos->x];
 	if (ft_strchr("1EMXYZ", tile))
 		return ;
-	if (tile == 'P'	&& ft_printf("##### GAME OVER! #####\n"))
+	if (tile == 'P' && ft_printf("##### GAME OVER! #####\n"))
 		game_destroy(game);
 	game->map.grid[monster->pos.y][monster->pos.x] = '0';
 	game->map.grid[new_pos->y][new_pos->x] = 'M';
