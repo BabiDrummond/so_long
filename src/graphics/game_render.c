@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:52:29 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 23:47:51 by bmoreira         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:56:11 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ static void	render_interface(t_game *game, int col, int row)
 {
 	char	*text;
 
-	text = ft_strjoin_free(ft_strdup("Moves: "), ft_itoa(game->moves));
-	text = ft_strjoin_free(text, ft_strdup("   Collected: "));
-	text = ft_strjoin_free(text, ft_itoa(game->collected));
+	text = ft_strjoin_free(ft_strdup("Moves: "),
+			ft_itoa(game->moves), TRUE, TRUE);
+	text = ft_strjoin_free(text, ft_strdup("   Collected: "), TRUE, TRUE);
+	text = ft_strjoin_free(text, ft_itoa(game->collected), TRUE, TRUE);
 	mlx_string_put(game->mlx.mlx_ptr, game->mlx.win, col, row, 0xFFFFFF, text);
 	free(text);
 }

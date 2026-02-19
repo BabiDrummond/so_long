@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:34:17 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/11/07 19:01:08 by bmoreira         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:45:20 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	map_read(char **buffer, char *file_name)
 	line = get_next_line(fd);
 	while (line)
 	{
-		*buffer = ft_strjoin_free(*buffer, line);
+		*buffer = ft_strjoin_free(*buffer, line, TRUE, TRUE);
 		if (!*buffer)
 			error_handler(buffer, "Error joining line.", EXIT_FAILURE);
 		line = get_next_line(fd);
