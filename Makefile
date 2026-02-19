@@ -44,12 +44,12 @@ bonus: re all
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(MLX) $(MLX_DEPENCENCIES) -o $(NAME)
-	@echo -n "\033[0;32mGenerated so_long\n"
+	@echo "\033[0;32mGenerated so_long\033[0m"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "\033[95mCompiling $(notdir $<)"
+	@echo "\033[95mCompiling \033[0m$(notdir $<)"
 
 $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_DIR)
@@ -58,13 +58,13 @@ $(MLX):
 	@make --no-print-directory -C $(MLX_DIR)
 
 clean:
-	@echo "\033[0;34mCleaning so_long objects"
+	@echo "\033[0;34mCleaning so_long objects\033[0m"
 	@rm -rf $(OBJS_DIR)
 	@make --no-print-directory -C $(LIBFT_DIR) clean
 	@make --no-print-directory -C $(MLX_DIR) clean
 
 fclean: clean
-	@echo "\033[0;34mCleaning so_long"
+	@echo "\033[0;34mCleaning so_long\033[0m"
 	@rm -f $(NAME)
 	@make --no-print-directory -C $(LIBFT_DIR) fclean
 
